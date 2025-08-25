@@ -11,9 +11,10 @@ const ReusableButton = ({
             disabled={btnActive}
             title={title}
             className={`flex flex-row items-center justify-center bg-white rounded-[10px] 
-              p-[5px] gap-[2px] border-[1px] border-gray-500 ${classname} ${
+              p-[5px] gap-[2px] border-[1px] border-gray-500 shadow-sm hover:shadow-md 
+              transition-all duration-150 ${classname} ${
                 btnActive ? "text-gray-400" : "text-black"
-            }`}
+            } ${btnActive ? "" : "cursor-pointer"}`}
             onClick={onClick}
         >
             {btnText && (

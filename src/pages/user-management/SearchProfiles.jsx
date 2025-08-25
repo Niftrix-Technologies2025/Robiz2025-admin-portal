@@ -117,7 +117,7 @@ const SearchProfiles = () => {
                             value={selectedAttribute}
                             onChange={setSelectedAttribute}
                             options={searchAttributes}
-                            className={`w-[170px]`}
+                            className={`w-[170px] max-sm:w-[110px] my-[2px]`}
                             classNamePrefix="react-select"
                             isSearchable={false}
                         />
@@ -134,7 +134,7 @@ const SearchProfiles = () => {
             </div>
             <div
                 className="w-full h-[89%] bg-white flex flex-col rounded-[10px] border-[1px] 
-            border-gray-500 mt-[10px] p-[10px] overflow-y-auto gap-[10px]"
+            border-gray-500 mt-[10px] p-[10px] overflow-y-auto gap-[10px] mb-[20px]"
             >
                 {searchResults &&
                     searchResults.map((result, index) => (
