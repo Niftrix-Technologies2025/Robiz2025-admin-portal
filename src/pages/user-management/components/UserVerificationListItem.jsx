@@ -34,7 +34,8 @@ const UserVerificationListItem = ({
     return (
         <div
             className="flex flex-row items-center border-[0.5px] border-gray-200 font-dmSans truncate my-[5px] 
-        rounded-[10px] bg-white px-[8px] gap-[5px] py-[5px] w-full justify-between max-w-[800px] flex-shrink-0"
+        rounded-[10px] bg-white px-[8px] gap-[5px] py-[5px] w-full justify-between 
+        max-w-[800px] flex-shrink-0"
         >
             <p className="w-[30px] truncate">{index + 1 ?? "null"}</p>
             <p className="w-[40px] truncate">{user_id ?? "null"}</p>

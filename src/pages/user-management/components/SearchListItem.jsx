@@ -6,11 +6,15 @@ const SearchListItem = ({ user }) => {
     return (
         <div
             className="flex flex-row w-full items-center 
-        font-dmSans bg-outletBg flex-shrink-0 rounded-[20px] px-[15px] py-[5px]"
+        justify-between font-dmSans bg-outletBg flex-shrink-0 rounded-[20px] px-[15px] py-[5px]
+         text-textColorAlt truncate"
         >
-            <p className="w-[40px]">{user.user_id}</p>
-            <p className="w-[120px]">{user.firstname}</p>
-            <p className="w-[120px]">{user.lastname}</p>
+            <p className="w-[40px] truncate">{user.userId}</p>
+            <p className="w-[150px] truncate">{user.name}</p>
+            <p className="w-[120px] truncate">{user.district}</p>
+            <p className="w-[300px] truncate">{user.clubName}</p>
+            <p className="w-[200px] truncate">{user.emailId}</p>
+            <p className="w-[100px] truncate">{user.status}</p>
             <ListItemButton
                 btnText={"View Profile"}
                 onClick={() => {
@@ -18,7 +22,7 @@ const SearchListItem = ({ user }) => {
                 }}
             />
             <UserProfileModal
-                userId={user.user_id}
+                userId={user.userId}
                 isOpen={isModalOpen}
                 onRequestClose={() => setIsModalOpen(false)}
             />

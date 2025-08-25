@@ -2,9 +2,7 @@ import { useEffect } from "react";
 import { MdOutlinePersonSearch } from "react-icons/md";
 import { useState } from "react";
 import Select from "react-select";
-
 import { TbFileDownload } from "react-icons/tb";
-
 import { searchProfileByAttribute } from "../../services/user.service";
 import SearchListItem from "./components/SearchListItem";
 import ReusableButton from "../../components/ReusableButton";
@@ -27,6 +25,7 @@ const SearchProfiles = () => {
     const btnActive = searchResults.length === 0;
     useEffect(() => {
         setSearchQuery("");
+        setSearchResults([]);
     }, [selectedAttribute]);
     useEffect(() => {
         try {
@@ -36,30 +35,15 @@ const SearchProfiles = () => {
                         searchQuery,
                         selectedAttribute.value
                     );
-                    setSearchResults(res.data);
-                    // setSearchResults([
-                    //     {
-                    //         user_id: 1,
-                    //         firstname: "John",
-                    //         lastname: "Doe",
-                    //         email: "john@example.com",
-                    //         status: "NEW",
-                    //     },
-                    //     {
-                    //         user_id: 2,
-                    //         firstname: "Jane",
-                    //         lastname: "Smith",
-                    //         email: "jane@example.com",
-                    //         status: "NEW",
-                    //     },
-                    // ]);
+                    const data = Array.isArray(res.data)
+                        ? res.data
+                        : Object.values(res.data);
+                    setSearchResults(data[1]);
                 };
                 fetchProfilesByAttribute();
-                // console.log("Search Results:", searchResults);
             } else {
                 setSearchResults([]);
             }
-            // console.log("Search Query:", searchQuery);
         } catch (err) {
             console.log(err);
         }
