@@ -8,9 +8,11 @@ export const fetchAllUsers = (payload) => {
 };
 
 export const setUserAsVerified = (userId) => {
-    return axios.post(`${AppConfig.api_url}users/set-user-verified`, userId, {
-        withCredentials: true,
-    });
+    return axios.post(
+        `${AppConfig.api_url}users/set-user-verified`,
+        { userId },
+        { withCredentials: true }
+    );
 };
 
 export const searchProfileByAttribute = (searchQuery, searchAttribute) => {
@@ -22,8 +24,14 @@ export const searchProfileByAttribute = (searchQuery, searchAttribute) => {
     });
 };
 
+// export const fetchUserDetails = (userId) => {
+//     return axios.get(`${AppConfig.api_url}users/fetch-user-detail`, userId, {
+//         withCredentials: true,
+//     });
+// };
 export const fetchUserDetails = (userId) => {
-    return axios.get(`${AppConfig.api_url}users/fetch-user-detail`, userId, {
+    return axios.get(`${AppConfig.api_url}users/fetch-user-detail`, {
+        params: { userId },
         withCredentials: true,
     });
 };
@@ -34,14 +42,11 @@ export const suspendUser = (userId) => {
     });
 };
 
-
-
 // export const sendNotification = () => {
 //     return axios.post(`${AppConfig.api_url}users/send-notification`, {
 //         withCredentials: true,
 //     });
 // };
-
 
 // export const AddUsers = () => {
 //     return axios.post(`${AppConfig.api_url}users/add-users-from-csv`, {

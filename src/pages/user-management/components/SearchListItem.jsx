@@ -11,8 +11,8 @@ const SearchListItem = ({ user }) => {
         >
             <p className="w-[40px] truncate">{user.userId}</p>
             <p className="w-[150px] truncate">{user.name}</p>
-            <p className="w-[120px] truncate">{user.district}</p>
-            <p className="w-[300px] truncate">{user.clubName}</p>
+            <p className="w-[100px] truncate">{user.district}</p>
+            <p className="w-[320px] truncate">{user.clubName}</p>
             <p className="w-[200px] truncate">{user.emailId}</p>
             <p className="w-[100px] truncate">{user.status}</p>
             <ListItemButton
@@ -21,11 +21,13 @@ const SearchListItem = ({ user }) => {
                     setIsModalOpen(true);
                 }}
             />
-            <UserProfileModal
-                userId={user.userId}
-                isOpen={isModalOpen}
-                onRequestClose={() => setIsModalOpen(false)}
-            />
+            {isModalOpen && (
+                <UserProfileModal
+                    userId={user.userId}
+                    isOpen={isModalOpen}
+                    onRequestClose={() => setIsModalOpen(false)}
+                />
+            )}
         </div>
     );
 };
