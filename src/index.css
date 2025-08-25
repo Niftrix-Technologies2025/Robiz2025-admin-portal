@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+@import "tailwindcss";
+
+@theme {
+    --font-roboto: "Roboto", "sans-serif";
+    --font-dmSans: "DM Sans", "sans-serif";
+    --font-poppins: "Poppins", "sans-serif";
+    --color-primary: #050400;
+    --color-secondary: #fefefe;
+    --color-tertiary: #d0a42b;
+    --color-textColor: #ffffff;
+    --color-textColorAlt: #000000;
+    --color-inputBorder: #5b5b5b;
+    --color-btnGradient1: #fbbd10;
+    --color-btnGradient2: #fafc01;
+    --color-btnGradient3: #faff00;
+    --color-btnGradient4: #fcbb12;
+    --color-btnBorderYellow: #fbbd10;
+    --color-welcomePageBtngrey: #424040;
+    --color-placeholderGrey1: #282525;
+    --color-placeholderGrey2: #1b1919;
+    --color-placeholderGrey3: #171717;
+    --color-borderGrey: #242424;
+    --color-inactiveBtngrey: #777474;
+    --color-datePickerBgGrey: #3d3d3d;
+    --color-datePickerChevronBgGrey: #bababa;
+    --color-paymentScreenFontGrey: #a5acb8;
+    --color-selectedDateColor: #fcbe11;
+    --color-selectedRangeMiddleColor: #fff490;
+    --color-calendarDateGrey: #464646;
+    --color-calendarSubheadingGrey: #8b8c8a;
+    --color-emailConfirmationModalYellow: #f1ea20;
+    --color-emailConfirmationModalGrey: #282826;
+    --color-emailConfirmationWindowHrGrey: #595957;
+    --color-warningRed: #f60000;
+    --color-profileCardGrey: #7b7b7b;
+    --color-searchPreferenceCardGrey: #1b1b1b;
+    --color-sideBarBg: #1c2655;
+    --color-sideBarIconBg: #222c65;
+    --color-sideBarIconActiveBg: #0088ff;
+    --color-headerBg: #2e3b61;
+    --color-outletBg: #edf0f4;
+    --color-neumorphicBg: #f0f0f3;
+    /* --color-customButton1Gradient: linear-gradient(to right, #FBBD10, #FAFC01); */
+}
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    /* backdrop-filter: blur(5px); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+}
+
+body {
+    @apply bg-outletBg;
+}

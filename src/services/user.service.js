@@ -1,0 +1,50 @@
+import { AppConfig } from "../util/AppConfig";
+import axios from "axios";
+
+export const fetchAllUsers = (payload) => {
+    return axios.post(`${AppConfig.api_url}users/fetch-all-users`, payload, {
+        withCredentials: true,
+    });
+};
+
+export const setUserAsVerified = (userId) => {
+    return axios.post(`${AppConfig.api_url}users/set-user-verified`, userId, {
+        withCredentials: true,
+    });
+};
+
+export const searchProfileByAttribute = (searchQuery, searchAttribute) => {
+    const formData = new FormData();
+    formData.append("searchQuery", searchQuery);
+    formData.append("searchAttribute", searchAttribute);
+    return axios.post(`${AppConfig.api_url}users/search-profiles`, formData, {
+        withCredentials: true,
+    });
+};
+
+export const fetchUserDetails = (userId) => {
+    return axios.get(`${AppConfig.api_url}users/fetch-user-detail`, userId, {
+        withCredentials: true,
+    });
+};
+
+export const suspendUser = (userId) => {
+    return axios.post(`${AppConfig.api_url}users/suspend-user`, userId, {
+        withCredentials: true,
+    });
+};
+
+
+
+// export const sendNotification = () => {
+//     return axios.post(`${AppConfig.api_url}users/send-notification`, {
+//         withCredentials: true,
+//     });
+// };
+
+
+// export const AddUsers = () => {
+//     return axios.post(`${AppConfig.api_url}users/add-users-from-csv`, {
+//         withCredentials: true,
+//     });
+// };
