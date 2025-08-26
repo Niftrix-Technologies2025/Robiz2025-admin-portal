@@ -1,8 +1,10 @@
 import { useState } from "react";
 import ListItemButton from "../../../components/ListItemButton";
-import UserProfileModal from "../../../components/modals/UserProfileModal";
-const SearchListItem = ({ user }) => {
+import UserProfileModal from "../modals/UserProfileModal";
+const SearchListItem = ({ user,onStatusChange }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    // const changeStatusHandler = () => {
+    // };
     return (
         <div
             className="flex flex-row w-full items-center 
@@ -26,6 +28,7 @@ const SearchListItem = ({ user }) => {
                     userId={user.userId}
                     isOpen={isModalOpen}
                     onRequestClose={() => setIsModalOpen(false)}
+                    onStatusChange={onStatusChange}
                 />
             )}
         </div>

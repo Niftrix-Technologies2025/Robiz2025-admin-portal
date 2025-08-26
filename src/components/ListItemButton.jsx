@@ -3,7 +3,8 @@ const ListItemButton = ({ btnText, isLoading, onClick }) => {
     return (
         <button
             className={`flex items-center justify-center w-[100px] h-[30px] 
-            cursor-pointer bg-btnGradient4 rounded-[10px] p-[5px] whitespace-nowrap`}
+            cursor-pointer bg-btnGradient4 rounded-[10px] p-[5px] whitespace-nowrap
+            shadow-sm hover:shadow-md transition-all duration-150`}
             disabled={isLoading}
             onClick={onClick}
         >

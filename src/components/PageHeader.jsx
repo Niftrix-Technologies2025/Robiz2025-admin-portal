@@ -26,8 +26,7 @@ const PageHeader = () => {
             </div>
 
             <div className="flex flex-row items-center justify-center gap-[10px]">
-                {/* <p>Logout</p> */}
-                {/* <p>{adminDetails.firstName}</p> */}
+                <p>{adminDetails?.firstName??"null"}</p>
                 <Logout />
             </div>
         </div>

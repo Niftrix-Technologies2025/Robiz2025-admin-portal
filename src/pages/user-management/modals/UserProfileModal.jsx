@@ -10,7 +10,12 @@ import { useState, useEffect } from "react";
 import UserProfileDetail from "../components/UserProfileDetail";
 import LoadingItem from "../../../components/LoadingItem";
 
-const UserProfileModal = ({ userId, isOpen, onRequestClose }) => {
+const UserProfileModal = ({
+    userId,
+    isOpen,
+    onRequestClose,
+    onStatusChange,
+}) => {
     const [userDetail, setUserDetail] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     useEffect(() => {
@@ -36,6 +41,7 @@ const UserProfileModal = ({ userId, isOpen, onRequestClose }) => {
             const res = await suspendUser(userId);
             if (res.status === 200) {
                 setUserDetail((prev) => ({ ...prev, status: "SUSPENDED" }));
+                if (onStatusChange) onStatusChange(userId, "SUSPENDED");
                 setIsLoading(false);
             }
         } catch (err) {

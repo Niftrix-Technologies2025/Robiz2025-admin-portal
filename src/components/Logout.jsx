@@ -32,16 +32,18 @@ const Logout = () => {
                     setIsOpen(true);
                 }}
             />
-            <CustomModal
-                primaryText={"CONFIRM LOGOUT"}
-                secondaryText={"Are you sure you want to Logout?"}
-                positiveText={"YES"}
-                negativeText={"NO"}
-                isOpen={isOpen}
-                onRequestClose={() => setIsOpen(false)}
-                onClick={handleLogout}
-                isLoading={isLoading}
-            />
+            {isOpen && (
+                <CustomModal
+                    primaryText={"CONFIRM LOGOUT"}
+                    secondaryText={"Are you sure you want to Logout?"}
+                    positiveText={"YES"}
+                    negativeText={"NO"}
+                    isOpen={isOpen}
+                    onRequestClose={() => setIsOpen(false)}
+                    onClick={handleLogout}
+                    isLoading={isLoading}
+                />
+            )}
         </>
     );
 };

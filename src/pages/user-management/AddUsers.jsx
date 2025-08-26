@@ -10,11 +10,16 @@ const AddUsers = () => {
     };
     return (
         <div className="w-full h-full flex flex-col ">
-            <input type="file" ref={fileInputRef} style={{ display: "none" }} />
+            <input
+                type="file"
+                ref={fileInputRef}
+                style={{ display: "none" }}
+                accept=".csv,text/csv"
+            />
             <ReusableButton
-                btnText={"Add Users"}
+                btnText={"Select CSV File"}
                 icon={<FaFileUpload />}
-                title={"Add users from CSV File"}
+                title={"Select CSV File"}
                 onClick={handleButtonClick}
                 classname={"w-[120px]"}
             />

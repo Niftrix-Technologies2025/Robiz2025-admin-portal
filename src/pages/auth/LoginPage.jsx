@@ -28,16 +28,6 @@ function LoginPage() {
             await set("robiz_admin_details", {
                 firstName: data.firstName,
             });
-            //store payment values in IndexedDB
-            // try {
-            //     const paymentValues = await getPaymentValues();
-            //     await set("paymentValues", paymentValues);
-            // } catch (paymentError) {
-            //     console.error(
-            //         "Failed to fetch/store payment values:",
-            //         paymentError
-            //     );
-            // }
             navigate("/main-dashboard", { replace: true });
         } catch (error) {
             setIsButtonActive(true);
@@ -51,17 +41,6 @@ function LoginPage() {
         } finally {
             setIsButtonActive(true);
         }
-        // try {
-        //     if (username === "admin" && password === "123") {
-        //         navigate("/main-dashboard", { replace: true });
-        //     } else {
-        //         throw new Error("Invalid credentials");
-        //     }
-        // } catch (error) {
-        //     setHasError(true);
-        // } finally {
-        //     setIsButtonActive(true);
-        // }
     };
 
     return (

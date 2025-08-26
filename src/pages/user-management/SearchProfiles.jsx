@@ -77,6 +77,14 @@ const SearchProfiles = () => {
         return csvRows.join("\n");
     }
 
+    const handleStatusChange = (userId, newStatus) => {
+        setSearchResults((prev) =>
+            prev.map((user) =>
+                user.userId === userId ? { ...user, status: newStatus } : user
+            )
+        );
+    };
+
     return (
         <div className="w-full h-full flex flex-col justify-start items-start">
             <div className="flex flex-row items-center justify-center gap-[10px]">
@@ -122,7 +130,11 @@ const SearchProfiles = () => {
             >
                 {searchResults &&
                     searchResults.map((result, index) => (
-                        <SearchListItem key={index} user={result} />
+                        <SearchListItem
+                            key={index}
+                            user={result}
+                            onStatusChange={handleStatusChange}
+                        />
                     ))}
             </div>
         </div>

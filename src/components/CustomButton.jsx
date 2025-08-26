@@ -8,7 +8,8 @@ const CustomButton = ({ onClick, btnText, active, className, icon = null }) => {
                     : //   ?"bg-customButton1Gradient cursor-pointer"
                       "bg-inactiveBtngrey"
                 //   "bg-white"
-            } rounded-[10px] flex items-center justify-center font-bold font-dmSans whitespace-nowrap ${className}`}
+            } rounded-[10px] flex items-center justify-center 
+            font-bold font-dmSans whitespace-nowrap shadow-sm hover:shadow-md transition-all duration-150 ${className}`}
             onClick={onClick}
         >
             <div className="flex flex-row justify-around items-center max-sm:gap-1 gap-2 w-full">
