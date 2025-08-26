@@ -1,11 +1,14 @@
 import { useEffect } from "react";
-import { MdOutlinePersonSearch } from "react-icons/md";
 import { useState } from "react";
 import Select from "react-select";
 import { TbFileDownload } from "react-icons/tb";
+import { CgSmileNone } from "react-icons/cg";
+import { MdOutlinePersonSearch } from "react-icons/md";
 import { searchProfileByAttribute } from "../../services/user.service";
 import SearchListItem from "./components/SearchListItem";
 import ReusableButton from "../../components/ReusableButton";
+import LoadingItem from "../../components/LoadingItem";
+import ReusableMessage from "../../components/ReusableMessage";
 
 const searchAttributes = [
     { value: "email", label: "Email ID" },
@@ -17,6 +20,7 @@ const searchAttributes = [
 ];
 
 const SearchProfiles = () => {
+    const [isLoading, setIsLoading] = useState(false);
     const [searchResults, setSearchResults] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
     const [selectedAttribute, setSelectedAttribute] = useState(
@@ -30,6 +34,7 @@ const SearchProfiles = () => {
     useEffect(() => {
         try {
             if (searchQuery.length > 2) {
+                setIsLoading(true);
                 const fetchProfilesByAttribute = async () => {
                     const res = await searchProfileByAttribute(
                         searchQuery,
@@ -39,13 +44,15 @@ const SearchProfiles = () => {
                         ? res.data
                         : Object.values(res.data);
                     setSearchResults(data[1]);
+                    setIsLoading(false);
                 };
                 fetchProfilesByAttribute();
             } else {
                 setSearchResults([]);
             }
         } catch (err) {
-            console.log(err);
+            console.error(err);
+            setIsLoading(false);
         }
     }, [searchQuery]);
 
@@ -128,14 +135,29 @@ const SearchProfiles = () => {
                 className="w-full h-[89%] bg-white flex flex-col rounded-[10px] border-[1px] 
             border-gray-500 mt-[10px] p-[10px] overflow-y-auto gap-[10px] mb-[20px]"
             >
-                {searchResults &&
+                {isLoading ? (
+                    <LoadingItem />
+                ) : searchQuery.length <= 2 ? (
+                    <ReusableMessage
+                        displayText={
+                            "Enter 3 or more characters in the Search Box to show results"
+                        }
+                        icon={<MdOutlinePersonSearch className="size-[40px]" />}
+                    />
+                ) : searchResults.length === 0 ? (
+                    <ReusableMessage
+                        displayText={"No Results Found"}
+                        icon={<CgSmileNone className="size-[40px]" />}
+                    />
+                ) : (
                     searchResults.map((result, index) => (
                         <SearchListItem
                             key={index}
                             user={result}
                             onStatusChange={handleStatusChange}
                         />
-                    ))}
+                    ))
+                )}
             </div>
         </div>
     );
