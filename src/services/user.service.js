@@ -24,11 +24,6 @@ export const searchProfileByAttribute = (searchQuery, searchAttribute) => {
     });
 };
 
-// export const fetchUserDetails = (userId) => {
-//     return axios.get(`${AppConfig.api_url}users/fetch-user-detail`, userId, {
-//         withCredentials: true,
-//     });
-// };
 export const fetchUserDetails = (userId) => {
     return axios.get(`${AppConfig.api_url}users/fetch-user-detail`, {
         params: { userId },
@@ -37,7 +32,16 @@ export const fetchUserDetails = (userId) => {
 };
 
 export const suspendUser = (userId) => {
-    return axios.post(`${AppConfig.api_url}users/suspend-user`, userId, {
+    return axios.post(
+        `${AppConfig.api_url}users/suspend-user`,
+        { userId },
+        { withCredentials: true }
+    );
+};
+
+export const activateUser = (userId) => {
+    return axios.post(`${AppConfig.api_url}users/activate-user`, {
+        params: { userId },
         withCredentials: true,
     });
 };

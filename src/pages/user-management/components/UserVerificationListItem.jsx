@@ -17,16 +17,13 @@ const UserVerificationListItem = ({
             setIsLoading(true);
             const res = await setUserAsVerified(user_id);
             if (res.status === 200) {
-                setIsLoading(false);
-                // setIsVerified(true);
+                setIsModalOpen(false);
                 window.location.reload();
-                // setTimeout(() => {
-                //     window.location.reload();
-                // }, 2000);
             }
         } catch (err) {
             console.error("Error setting user as verified:", err);
             setIsLoading(false);
+            setIsModalOpen(false);
         } finally {
             setIsLoading(false);
         }
@@ -49,16 +46,18 @@ const UserVerificationListItem = ({
                 }}
                 isLoading={isLoading}
             />
-            <CustomModal
-                primaryText={"USER VERIFICATION"}
-                secondaryText={"Are you sure you want to verify this user?"}
-                positiveText={"Yes"}
-                negativeText={"No"}
-                isOpen={isModalOpen}
-                onRequestClose={() => setIsModalOpen(false)}
-                onClick={setVerified}
-                isLoading={isLoading}
-            />
+            {isModalOpen && (
+                <CustomModal
+                    primaryText={"USER VERIFICATION"}
+                    secondaryText={"Are you sure you want to verify this user?"}
+                    positiveText={"Yes"}
+                    negativeText={"No"}
+                    isOpen={isModalOpen}
+                    onRequestClose={() => setIsModalOpen(false)}
+                    onClick={setVerified}
+                    isLoading={isLoading}
+                />
+            )}
         </div>
     );
 };
