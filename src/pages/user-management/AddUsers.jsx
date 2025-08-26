@@ -1,5 +1,4 @@
-// import React from 'react'
-import { FaFileUpload } from "react-icons/fa";
+import { FaFileCsv } from "react-icons/fa";
 import { useRef } from "react";
 import ReusableButton from "../../components/ReusableButton";
 
@@ -17,11 +16,11 @@ const AddUsers = () => {
                 accept=".csv,text/csv"
             />
             <ReusableButton
-                btnText={"Select CSV File"}
-                icon={<FaFileUpload />}
+                btnText={"Select File"}
+                icon={<FaFileCsv className="size-[18px]" />}
                 title={"Select CSV File"}
                 onClick={handleButtonClick}
-                classname={"w-[120px]"}
+                classname={"w-[150px] h-[40px]"}
             />
         </div>
     );
