@@ -1,9 +1,6 @@
 import Logout from "./Logout";
-// import { RxHamburgerMenu } from "react-icons/rx";
 import { get } from "idb-keyval";
 import { useEffect, useState } from "react";
-
-// export default PageHeader;
 
 const PageHeader = () => {
     const [adminDetails, setAdminDetails] = useState(null);
@@ -19,14 +16,21 @@ const PageHeader = () => {
         }
     }, []);
     return (
-        <div className="fixed z-10 w-full h-[48px] flex flex-row items-center justify-between pl-[80px] px-2 py-1 bg-headerBg text-textColor font-dmSans">
+        <div
+            className="fixed z-10 w-full h-[48px] flex flex-row items-center justify-between pl-[80px] px-2 py-1 
+        bg-headerBg text-textColor font-dmSans"
+        >
             <div className="flex flex-row items-center">
-                {/* <RxHamburgerMenu className="sm:hidden" /> */}
                 <p>Robiz Admin</p>
             </div>
 
             <div className="flex flex-row items-center justify-center gap-[10px]">
-                <p>{adminDetails?.firstName??"null"}</p>
+                <p
+                    className=" font-bold bg-gradient-to-b from-[#FCBB12] to-[#FAFF00] 
+                bg-clip-text text-transparent"
+                >
+                    {adminDetails?.firstName ?? "null"}
+                </p>
                 <Logout />
             </div>
         </div>
