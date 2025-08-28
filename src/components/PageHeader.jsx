@@ -17,7 +17,7 @@ const PageHeader = () => {
     }, []);
     return (
         <div
-            className="fixed z-10 w-full h-[48px] flex flex-row items-center justify-between pl-[80px] px-2 py-1 
+            className="fixed z-10 w-full h-[48px] flex flex-row items-center justify-between pl-[80px] pr-[10px] px-2 py-1 
         bg-headerBg text-textColor font-dmSans"
         >
             <div className="flex flex-row items-center">
@@ -26,7 +26,7 @@ const PageHeader = () => {
 
             <div className="flex flex-row items-center justify-center gap-[10px]">
                 <p
-                    className=" font-bold bg-gradient-to-b from-[#FCBB12] to-[#FAFF00] 
+                    className=" font-bold bg-gradient-to-r from-[#FBBD10] to-[#FAFC01] 
                 bg-clip-text text-transparent"
                 >
                     {adminDetails?.firstName ?? "null"}

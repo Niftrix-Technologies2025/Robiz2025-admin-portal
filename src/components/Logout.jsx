@@ -25,13 +25,18 @@ const Logout = () => {
     };
     return (
         <>
-            <TbLogout2
-                className="w-[20px] h-[20px] cursor-pointer"
-                title="Logout"
+            <div
+                className="flex flex-row items-center justify-center font-dmSans
+                cursor-pointer bg-gradient-to-b from-[#FCBB12] to-[#FAFF00] rounded-[5px] 
+                text-textColorAlt px-[4px] py-[1.5px] hover:shadow-xl"
                 onClick={() => {
                     setIsOpen(true);
                 }}
-            />
+            >
+                <p className="text-[16px]">Logout</p>
+                <TbLogout2 className="size-[18px]" title="Logout" />
+            </div>
+
             {isOpen && (
                 <CustomModal
                     primaryText={"CONFIRM LOGOUT"}
