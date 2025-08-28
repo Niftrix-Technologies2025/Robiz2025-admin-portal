@@ -54,6 +54,9 @@ const UserProfileModal = ({
             setIsLoading(true);
             const res = await activateUser(userId);
             if (res.status === 200) {
+                setUserDetail((prev) => ({ ...prev, status: "ACTIVE" }));
+                if (onStatusChange) onStatusChange(userId, "ACTIVE");
+                setIsLoading(false);
             }
         } catch (err) {
             setIsLoading(false);

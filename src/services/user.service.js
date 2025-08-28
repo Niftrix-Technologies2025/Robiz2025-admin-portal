@@ -44,10 +44,11 @@ export const suspendUser = (userId) => {
 };
 
 export const activateUser = (userId) => {
-    return axios.post(`${AppConfig.api_url}users/activate-user`, {
-        params: { userId },
-        withCredentials: true,
-    });
+    return axios.post(
+        `${AppConfig.api_url}users/activate-user`,
+        { userId },
+        { withCredentials: true }
+    );
 };
 
 export const addUsersFromCSV = (payload) => {

@@ -1,8 +1,4 @@
-// import { BsFiletypeCsv } from "react-icons/bs";
-// import { IoIosDocument } from "react-icons/io";
-// import { HiOutlineDocumentText } from "react-icons/hi2";
 import { IoDocumentText } from "react-icons/io5";
-// import { BsFiletypeCsv } from "react-icons/bs";
 import { useRef, useState } from "react";
 import ReusableButton from "../../components/ReusableButton";
 
@@ -14,6 +10,10 @@ const AddUsers = () => {
     };
     const handleFileChange = (e) => {
         setSelectedFile(e.target.files[0]);
+    };
+    const AddUsers = () => {
+        try {
+        } catch {}
     };
     return (
         <div
@@ -64,6 +64,7 @@ const AddUsers = () => {
                 btnText={"Add users from the selected file"}
                 classname={"w-[250px] h-[50px]"}
                 btnActive={!selectedFile}
+                onClick={AddUsers}
             />
         </div>
     );

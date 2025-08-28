@@ -1,16 +1,24 @@
 import { useNavigate } from "react-router-dom";
-const TabbedLayoutItem = ({ item }) => {
+const TabbedLayoutItem = ({ item, isActive }) => {
     const navigate = useNavigate();
     const handleClick = () => {
         navigate(item.url);
     };
     return (
         <div
-            className="flex items-center justify-center cursor-pointer 
-            rounded-[5px] p-1 bg-neumorphicBg shadow-lg"
+            className={`flex items-center justify-center cursor-pointer 
+            rounded-[5px] p-1 ${
+                isActive ? "text-textColorAlt" : "text-gray-600"
+            }`}
             onClick={handleClick}
         >
-            <p className="text-textColorAlt font-dmSans max-sm:text-[12px] whitespace-nowrap">
+            <p
+                className={`font-dmSans max-sm:text-[12px] whitespace-nowrap ${
+                    isActive
+                        ? `underline decoration-sideBarIconActiveBg decoration-3 underline-offset-8`
+                        : ""
+                }`}
+            >
                 {item.label}
             </p>
         </div>

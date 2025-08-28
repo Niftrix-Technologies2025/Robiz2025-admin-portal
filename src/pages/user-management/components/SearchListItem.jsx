@@ -8,7 +8,7 @@ const SearchListItem = ({ user,onStatusChange }) => {
     return (
         <div
             className="flex flex-row w-full items-center 
-        justify-between font-dmSans bg-outletBg flex-shrink-0 rounded-[20px] px-[15px] py-[5px]
+        justify-between font-dmSans bg-outletBg flex-shrink-0 rounded-[10px] px-[15px] py-[5px]
          text-textColorAlt truncate"
         >
             <p className="w-[40px] truncate">{user.userId}</p>
