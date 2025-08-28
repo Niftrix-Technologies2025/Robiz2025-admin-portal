@@ -51,20 +51,23 @@ export const activateUser = (userId) => {
     );
 };
 
-export const addUsersFromCSV = (payload) => {
-    return axios.post(`${AppConfig.api_url}users/add-users-from-csv`, payload, {
+export const addUsersFromCSV = (file) => {
+    const formData = new FormData();
+    formData.append("file", file);
+    return axios.post(
+        `${AppConfig.api_url}users/add-users-from-csv`,
+        formData,
+        {
+            withCredentials: true,
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
+        }
+    );
+};
+
+export const sendNotification = () => {
+    return axios.post(`${AppConfig.api_url}users/send-notification`, {
         withCredentials: true,
     });
 };
-
-// export const sendNotification = () => {
-//     return axios.post(`${AppConfig.api_url}users/send-notification`, {
-//         withCredentials: true,
-//     });
-// };
-
-// export const AddUsers = () => {
-//     return axios.post(`${AppConfig.api_url}users/add-users-from-csv`, {
-//         withCredentials: true,
-//     });
-// };

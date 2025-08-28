@@ -8,7 +8,9 @@ const TabbedLayoutItem = ({ item, isActive }) => {
         <div
             className={`flex items-center justify-center cursor-pointer 
             rounded-[5px] p-1 ${
-                isActive ? "text-textColorAlt" : "text-gray-600"
+                isActive
+                    ? "text-textColorAlt"
+                    : "text-gray-600 hover:text-textColorAlt"
             }`}
             onClick={handleClick}
         >

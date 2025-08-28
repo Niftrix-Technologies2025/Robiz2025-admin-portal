@@ -14,7 +14,8 @@ const CustomModal = ({
     return (
         <Modal
             isOpen={isOpen}
-            className="w-[347px] h-[136px] max-sm:w-[318px] max-sm:h-[135px] flex flex-col items-center rounded-[20px] bg-emailConfirmationModalGrey"
+            className="w-[347px] h-[136px] max-sm:w-[318px] max-sm:h-[135px] flex flex-col items-center 
+            rounded-[20px] bg-emailConfirmationModalGrey"
             overlayClassName="modal-overlay"
             onRequestClose={onRequestClose}
             ariaHideApp={false}

@@ -1,8 +1,9 @@
-// import React from 'react'
-
 const UserNotifications = () => {
   return (
-    <div>UserNotifications</div>
+    <div className="flex flex-col">
+      <input type="text" className="w-[300px] h-[400px]"></input>
+      
+    </div>
   )
 }
 

@@ -18,7 +18,7 @@ const PublicRoute = ({ children }) => {
                 }
             } catch (err) {
                 console.error("Authentication check failed:", err);
-                await del("userDetails");
+                await del("robiz_admin_details");
                 setShouldRender(true);
             } finally {
                 setIsChecking(false);
