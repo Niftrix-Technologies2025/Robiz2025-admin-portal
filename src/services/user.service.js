@@ -1,10 +1,14 @@
 import { AppConfig } from "../util/AppConfig";
 import axios from "axios";
 
-export const fetchAllUsers = (payload) => {
-    return axios.post(`${AppConfig.api_url}users/fetch-all-users`, payload, {
-        withCredentials: true,
-    });
+export const fetchUnverifiedUsers = (payload) => {
+    return axios.post(
+        `${AppConfig.api_url}users/fetch-unverified-users`,
+        payload,
+        {
+            withCredentials: true,
+        }
+    );
 };
 
 export const setUserAsVerified = (userId) => {
@@ -42,6 +46,12 @@ export const suspendUser = (userId) => {
 export const activateUser = (userId) => {
     return axios.post(`${AppConfig.api_url}users/activate-user`, {
         params: { userId },
+        withCredentials: true,
+    });
+};
+
+export const addUsersFromCSV = (payload) => {
+    return axios.post(`${AppConfig.api_url}users/add-users-from-csv`, payload, {
         withCredentials: true,
     });
 };

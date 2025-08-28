@@ -27,7 +27,7 @@ const PublicRoute = ({ children }) => {
         checkAuth();
     }, [navigate]);
     if (isChecking) {
-        return <LoadingItem />;
+        return <LoadingItem size={10} classname={"!h-screen"} />;
     }
     if (!shouldRender) {
         return null;

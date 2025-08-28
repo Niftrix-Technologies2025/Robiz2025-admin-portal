@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchAllUsers } from "../../services/user.service";
+import { fetchUnverifiedUsers } from "../../services/user.service";
 import UserVerificationListItem from "./components/UserVerificationListItem";
 import LoadingItem from "../../components/LoadingItem";
 
@@ -10,11 +10,9 @@ const UserVerification = () => {
         try {
             setIsLoading(true);
             const fetchUserData = async () => {
-                const res = await fetchAllUsers();
+                const res = await fetchUnverifiedUsers();
                 const usersList = res.data || res;
-                setPendingUsers(
-                    usersList.filter((user) => user.status === "NEW")
-                );
+                setPendingUsers(usersList);
                 setIsLoading(false);
             };
             fetchUserData();
@@ -37,7 +35,7 @@ const UserVerification = () => {
                             firstname={user.firstname}
                             lastname={user.lastname}
                             email={user.email}
-                            status={user.status}
+                            // status={user.status}
                         />
                     ))}
                 </div>
