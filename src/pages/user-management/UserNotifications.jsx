@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import ReusableButton from "../../components/ReusableButton";
 import UserNotificationCard from "./components/UserNotificationCard";
+import { sendNotification } from "../../services/user.service";
 const recipientTypes = [
     { label: "All Users", value: "all" },
     { label: "Verified Users", value: "verified" },
@@ -19,15 +20,24 @@ const UserNotifications = () => {
     const handleRemoveAttachments = () => {
         setAttachments([]);
     };
-    const sendNotificationHandler = () => {
+    const sendNotificationHandler = async () => {
         try {
             setIsLoading(true);
+            const res = await sendNotification(
+                message,
+                recipientType,
+                attachments
+            );
             if (res.status === 200) {
                 setIsLoading(false);
+                setAttachments([]);
+                setMessage("");
+                setRecipientType("all");
                 // Show success message or handle response
             }
         } catch (err) {
             console.error("Error sending notification:", err);
+            setIsLoading(false);
         }
     };
     return (
@@ -64,7 +74,10 @@ const UserNotifications = () => {
                     style={{ display: "none" }}
                     type="file"
                     multiple
-                    onChange={(e) => setAttachments(Array.from(e.target.files))}
+                    onChange={(e) => {
+                        setAttachments(Array.from(e.target.files));
+                        e.target.value = "";
+                    }}
                 />
                 <div className="flex flex-row gap-[10px]">
                     <ReusableButton
@@ -74,7 +87,7 @@ const UserNotifications = () => {
                     />
                     <ReusableButton
                         btnText={"Remove Attachments"}
-                        btnActive={!attachments.length > 0}
+                        btnActive={attachments.length === 0}
                         classname={`w-[200px] !border-none !rounded-[5px]`}
                         onClick={handleRemoveAttachments}
                     />
@@ -84,7 +97,8 @@ const UserNotifications = () => {
                     <ul className="flex flex-row flex-wrap gap-[5px] mt-2 text-sm text-gray-700">
                         {attachments.map((file, idx) => (
                             <li
-                                className="bg-gray-600 text-white rounded-[5px] p-[3px]"
+                                className="bg-gray-300 border-2 border-white 
+                                text-textColorAlt rounded-[5px] p-[3px] font-medium"
                                 key={idx}
                             >
                                 {file.name}
@@ -95,8 +109,15 @@ const UserNotifications = () => {
             </UserNotificationCard>
             <ReusableButton
                 btnText={"Send message"}
-                classname={`w-[200px]`}
+                classname={`pl-[10px] w-[200px] border-none !rounded-[5px] !bg-red-500 text-white 
+                    ${
+                        !message
+                            ? `!text-gray-300 font-light cursor-not-allowed`
+                            : ""
+                    }`}
+                btnActive={!message}
                 onClick={sendNotificationHandler}
+                isLoading={isLoading}
             />
         </div>
     );

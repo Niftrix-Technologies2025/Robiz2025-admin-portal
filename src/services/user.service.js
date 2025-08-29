@@ -66,12 +66,14 @@ export const addUsersFromCSV = (file) => {
     );
 };
 
-export const sendNotification = (message, recipientType, attachments) => {
+export const sendNotification = (message, recipientType, attachments = []) => {
     const formData = new FormData();
     formData.append("message", message);
     formData.append("recipientType", recipientType);
-    formData.append("attachments", attachments);
-    return axios.post(`${AppConfig.api_url}users/send-notification`, {
+    (attachments || []).forEach((file) => {
+        formData.append("attachments", file);
+    });
+    return axios.post(`${AppConfig.api_url}users/send-notification`, formData, {
         withCredentials: true,
         headers: {
             "Content-Type": "multipart/form-data",
