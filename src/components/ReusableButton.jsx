@@ -5,10 +5,11 @@ const ReusableButton = ({
     title,
     classname,
     onClick,
+    isLoading = false,
 }) => {
     return (
         <button
-            disabled={btnActive}
+            disabled={btnActive || isLoading}
             title={title}
             className={`flex flex-row items-center justify-center bg-white rounded-[10px] 
               p-[5px] gap-[2px] text-[14px] border-[1px] border-gray-500  ${classname} ${

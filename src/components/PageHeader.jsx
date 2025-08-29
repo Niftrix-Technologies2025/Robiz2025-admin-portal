@@ -27,7 +27,7 @@ const PageHeader = () => {
             <div className="flex flex-row items-center justify-center gap-[10px]">
                 <p
                     className=" font-bold bg-gradient-to-r from-[#FBBD10] to-[#FAFC01] 
-                bg-clip-text text-transparent"
+                    bg-clip-text text-transparent"
                 >
                     {adminDetails?.firstName ?? "null"}
                 </p>

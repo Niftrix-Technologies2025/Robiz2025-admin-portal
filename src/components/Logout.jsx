@@ -27,7 +27,7 @@ const Logout = () => {
         <>
             <div
                 className="flex flex-row items-center justify-center font-dmSans
-                cursor-pointer bg-gradient-to-b from-[#FCBB12] to-[#FAFF00] rounded-[5px] 
+                cursor-pointer bg-gradient-to-t from-[#FCBB12] to-[#FAFF00] rounded-[5px] 
                 text-textColorAlt px-[4px] py-[1.5px] hover:shadow-xl"
                 onClick={() => {
                     setIsOpen(true);
