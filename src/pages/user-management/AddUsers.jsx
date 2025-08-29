@@ -3,6 +3,8 @@ import { useRef, useState } from "react";
 import ReusableButton from "../../components/ReusableButton";
 import DataTemplateRow from "./components/DataTemplateRow";
 import LoadingItem from "../../components/LoadingItem";
+import { addUsersFromCSV } from "../../services/user.service";
+import { IoMdDownload } from "react-icons/io";
 
 const sampleData = [
     { label: "EMAIL ID", value: "example@example.com" },
@@ -29,6 +31,7 @@ const AddUsers = () => {
             const res = await addUsersFromCSV(selectedFile);
             if (res.status === 200) {
                 // Show success message or handle response
+                setSelectedFile(null);
                 setIsLoading(false);
             }
         } catch (err) {
@@ -41,13 +44,23 @@ const AddUsers = () => {
             className="w-full h-full px-[60px] py-[30px] max-lg:px-[10px] max-lg:py-[5px]
             flex flex-col items-center justify-center font-dmSans"
         >
-            <p
-                className={`pl-[10px] flex justify-start w-full text-[24px] font-bold ${
-                    isLoading ? "hidden" : ""
-                }`}
-            >
-                Expected data format:
-            </p>
+            <div className="px-[10px] py-[3px] flex justify-between items-center w-full gap-[10px]">
+                <p
+                    className={`text-[24px] max-sm:text-[17px] font-bold whitespace-nowrap ${
+                        isLoading ? "hidden" : ""
+                    }`}
+                >
+                    Expected data format:
+                </p>
+                <a href="/users.csv" download>
+                    <ReusableButton
+                        btnText={"Download Sample .csv"}
+                        icon={<IoMdDownload />}
+                        classname={`!rounded-[5px] h-[30px] !border-0 font-bold max-sm:text-[12px]`}
+                    />
+                </a>
+            </div>
+
             <input
                 type="file"
                 ref={fileInputRef}
