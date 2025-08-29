@@ -1,4 +1,4 @@
-import TabbedLayout from "../../../components/tabbed-layout/Tabbedlayout";
+import TabbedLayout from "../../../components/tabbed-layout/TabbedLayout";
 import { Outlet } from "react-router-dom";
 
 const tabs = [

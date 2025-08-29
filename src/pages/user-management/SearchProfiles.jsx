@@ -34,8 +34,8 @@ const SearchProfiles = () => {
     useEffect(() => {
         try {
             if (searchQuery.length > 2) {
-                setIsLoading(true);
                 const fetchProfilesByAttribute = async () => {
+                    setIsLoading(true);
                     const res = await searchProfileByAttribute(
                         searchQuery,
                         selectedAttribute.value

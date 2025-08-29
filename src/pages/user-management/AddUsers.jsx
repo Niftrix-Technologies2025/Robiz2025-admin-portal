@@ -35,8 +35,10 @@ const AddUsers = () => {
                 setIsLoading(false);
             }
         } catch (err) {
-            setIsLoading(false);
+            // setIsLoading(false);
             console.error("Error adding users from CSV:", err);
+        } finally {
+            setIsLoading(false);
         }
     };
     return (
