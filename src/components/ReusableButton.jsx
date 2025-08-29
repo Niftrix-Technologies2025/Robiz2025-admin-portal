@@ -1,3 +1,4 @@
+import LoadingItem from "./LoadingItem";
 const ReusableButton = ({
     btnText,
     btnActive,
@@ -20,10 +21,18 @@ const ReusableButton = ({
             } `}
             onClick={onClick}
         >
-            {btnText && (
-                <p className={`font-dmSans whitespace-nowrap`}>{btnText}</p>
+            {isLoading ? (
+                <LoadingItem size={10} classname="py-[3.5px]" />
+            ) : (
+                <>
+                    {btnText && (
+                        <p className={`font-dmSans whitespace-nowrap`}>
+                            {btnText}
+                        </p>
+                    )}
+                    {icon && icon}
+                </>
             )}
-            {icon && icon}
         </button>
     );
 };
