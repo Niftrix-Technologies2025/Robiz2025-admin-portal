@@ -3,8 +3,8 @@ import { useRef, useState } from "react";
 import ReusableButton from "../../components/ReusableButton";
 import DataTemplateRow from "./components/DataTemplateRow";
 import LoadingItem from "../../components/LoadingItem";
-import { addUsersFromCSV } from "../../services/user.service";
 import { IoMdDownload } from "react-icons/io";
+import { useUploadStore } from "../../store/userUpload.store";
 
 const sampleData = [
     { label: "EMAIL ID", value: "example@example.com" },
@@ -15,7 +15,7 @@ const sampleData = [
     { label: "CLUB NAME", value: "example club" },
 ];
 const AddUsers = () => {
-    const [isLoading, setIsLoading] = useState(false);
+    const { isUploading, startUpload, reset } = useUploadStore();
     const [selectedFile, setSelectedFile] = useState(null);
     const fileInputRef = useRef(null);
     const handleButtonClick = () => {
@@ -27,18 +27,13 @@ const AddUsers = () => {
     const handleAddUsers = async () => {
         if (!selectedFile) return;
         try {
-            setIsLoading(true);
-            const res = await addUsersFromCSV(selectedFile);
+            const res = await startUpload(selectedFile);
             if (res.status === 200) {
-                // Show success message or handle response
                 setSelectedFile(null);
-                setIsLoading(false);
+                if (fileInputRef.current) fileInputRef.current.value = "";
             }
         } catch (err) {
-            // setIsLoading(false);
             console.error("Error adding users from CSV:", err);
-        } finally {
-            setIsLoading(false);
         }
     };
     return (
@@ -46,11 +41,12 @@ const AddUsers = () => {
             className="w-full h-full px-[60px] py-[30px] max-lg:px-[10px] max-lg:py-[5px]
             flex flex-col items-center justify-center font-dmSans"
         >
-            <div className="px-[10px] py-[3px] flex justify-between items-center w-full gap-[10px]">
+            <div
+                className={`px-[10px] py-[3px] flex justify-between items-center 
+                w-full gap-[10px] ${isUploading ? "hidden" : ""}`}
+            >
                 <p
-                    className={`text-[24px] max-sm:text-[17px] font-bold whitespace-nowrap ${
-                        isLoading ? "hidden" : ""
-                    }`}
+                    className={`text-[24px] max-sm:text-[17px] font-bold whitespace-nowrap `}
                 >
                     Expected data format:
                 </p>
@@ -71,7 +67,7 @@ const AddUsers = () => {
                 onChange={handleFileChange}
             />
 
-            {isLoading ? (
+            {isUploading ? (
                 <div
                     className="w-full h-[90%] flex flex-col items-center justify-center 
                 bg-white rounded-[5px] border-gray-500 border-[1.5px]"
@@ -122,7 +118,7 @@ const AddUsers = () => {
             <ReusableButton
                 btnText={"Add users from the selected file"}
                 classname={"w-[250px] h-[50px]"}
-                btnActive={!selectedFile || isLoading}
+                btnActive={!selectedFile || isUploading}
                 onClick={handleAddUsers}
             />
         </div>

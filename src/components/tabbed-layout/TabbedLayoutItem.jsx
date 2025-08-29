@@ -17,7 +17,7 @@ const TabbedLayoutItem = ({ item, isActive }) => {
             <p
                 className={`font-dmSans max-sm:text-[12px] whitespace-nowrap ${
                     isActive
-                        ? `underline decoration-sideBarIconActiveBg decoration-3 underline-offset-8`
+                        ? `underline decoration-sideBarIconActiveBg decoration-3 underline-offset-8 `
                         : ""
                 }`}
             >

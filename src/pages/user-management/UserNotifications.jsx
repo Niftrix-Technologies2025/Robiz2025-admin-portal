@@ -107,9 +107,10 @@ const UserNotifications = () => {
                     </ul>
                 )}
             </UserNotificationCard>
+            <div className="h-[5px]" />
             <ReusableButton
                 btnText={"Send message"}
-                classname={`pl-[10px] w-[200px] border-none !rounded-[5px] !bg-red-500 text-white 
+                classname={`ml-[5px] w-[200px] border-none !rounded-[5px] !bg-red-500 text-white 
                     ${
                         !message
                             ? `!text-gray-300 font-light cursor-not-allowed`
