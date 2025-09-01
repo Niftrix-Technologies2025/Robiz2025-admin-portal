@@ -26,10 +26,17 @@ export const setUserAsVerified = (userId) => {
     );
 };
 
-export const searchProfileByAttribute = (searchQuery, searchAttribute) => {
+export const searchProfileByAttribute = (
+    searchQuery,
+    searchAttribute,
+    page = 1,
+    limit = 10
+) => {
     const formData = new FormData();
     formData.append("searchQuery", searchQuery);
     formData.append("searchAttribute", searchAttribute);
+    formData.append("page", page);
+    formData.append("limit", limit);
     return axios.post(`${AppConfig.api_url}users/search-profiles`, formData, {
         withCredentials: true,
     });

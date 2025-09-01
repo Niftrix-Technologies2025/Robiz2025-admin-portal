@@ -9,6 +9,9 @@ import SearchListItem from "./components/SearchListItem";
 import ReusableButton from "../../components/ReusableButton";
 import LoadingItem from "../../components/LoadingItem";
 import ReusableMessage from "../../components/ReusableMessage";
+import PaginationNavbar from "./components/PaginationNavbar";
+
+const PAGE_SIZE = 50; //100 results per page
 
 const searchAttributes = [
     { value: "email", label: "Email ID" },
@@ -27,6 +30,8 @@ const SearchProfiles = () => {
         searchAttributes[0]
     );
     const btnActive = searchResults.length === 0;
+    const [page, setPage] = useState(1);
+    const [total, setTotal] = useState(0);
     useEffect(() => {
         setSearchQuery("");
         setSearchResults([]);
@@ -38,12 +43,15 @@ const SearchProfiles = () => {
                     setIsLoading(true);
                     const res = await searchProfileByAttribute(
                         searchQuery,
-                        selectedAttribute.value
+                        selectedAttribute.value,
+                        page,
+                        PAGE_SIZE
                     );
                     const data = Array.isArray(res.data)
                         ? res.data
                         : Object.values(res.data);
                     setSearchResults(data[1]);
+                    // setTotal(res.data.total || 0);
                     setIsLoading(false);
                 };
                 fetchProfilesByAttribute();
@@ -55,6 +63,7 @@ const SearchProfiles = () => {
             setIsLoading(false);
         }
     }, [searchQuery]);
+    const totalPages = Math.ceil(total / PAGE_SIZE);
 
     const handleDownloadCSV = () => {
         const csv = convertToCSV(searchResults);
@@ -123,13 +132,23 @@ const SearchProfiles = () => {
                         <MdOutlinePersonSearch className="w-[24px] h-[24px] text-gray-500" />
                     </div>
                 </div>
-                <ReusableButton
-                    btnText={"Download CSV"}
-                    icon={<TbFileDownload className="size-[18px]" />}
-                    onClick={handleDownloadCSV}
-                    btnActive={btnActive}
-                    title={"Download search results as CSV File"}
-                />
+                <div className="flex flex-row max-md:flex-col items-center justify-center gap-[10px] max;sm:gap-[5px]">
+                    <PaginationNavbar
+                        pageNo={page}
+                        totalPages={totalPages}
+                        backwardAction={() => setPage(page - 1)}
+                        skipBackwardAction={() => setPage(1)}
+                        forwardAction={() => setPage(page + 1)}
+                        skipForwardAction={() => setPage(totalPages)}
+                    />
+                    <ReusableButton
+                        btnText={"Download CSV"}
+                        icon={<TbFileDownload className="size-[18px]" />}
+                        onClick={handleDownloadCSV}
+                        btnActive={btnActive}
+                        title={"Download search results as CSV File"}
+                    />
+                </div>
             </div>
             <div
                 className="w-full h-[89%] bg-white flex flex-col rounded-[10px] border-[1px] 
