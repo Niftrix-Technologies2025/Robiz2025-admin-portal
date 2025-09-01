@@ -3,7 +3,7 @@ import { FaCircleArrowLeft } from "react-icons/fa6";
 import { IoPlaySkipForwardCircle } from "react-icons/io5";
 import { IoPlaySkipBackCircle } from "react-icons/io5";
 
-const PaginatedNavbar = ({
+const PaginationNavbar = ({
     pageNo,
     totalPages,
     backwardAction,
@@ -58,4 +58,4 @@ const PaginatedNavbar = ({
     );
 };
 
-export default PaginatedNavbar;
+export default PaginationNavbar;
