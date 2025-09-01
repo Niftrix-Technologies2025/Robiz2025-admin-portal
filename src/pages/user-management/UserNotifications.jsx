@@ -110,10 +110,10 @@ const UserNotifications = () => {
             <div className="h-[5px]" />
             <ReusableButton
                 btnText={"Send message"}
-                classname={`ml-[5px] w-[200px] border-none !rounded-[5px] !bg-red-500 text-white 
+                classname={`ml-[5px] w-[200px] border-none !rounded-[5px] !bg-red-500 disabled:!bg-gray-400 text-white 
                     ${
                         !message
-                            ? `!text-gray-300 font-light cursor-not-allowed`
+                            ? `!text-gray-300 font-light cursor-default`
                             : ""
                     }`}
                 btnActive={!message}

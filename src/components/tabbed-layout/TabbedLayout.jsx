@@ -6,7 +6,7 @@ const TabbedLayout = ({ items }) => {
     return (
         <div
             className="fixed flex flex-row h-[35px] w-full items-center justify-start 
-        gap-[10px] bg-white pl-[10px] overflow-x-auto scrollbar-hide"
+        gap-[10px] bg-white pl-[10px] overflow-x-auto scrollbar-hide z-10"
         >
             {items.map((item, index) => (
                 <TabbedLayoutItem

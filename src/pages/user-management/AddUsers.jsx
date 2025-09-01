@@ -74,7 +74,9 @@ const AddUsers = () => {
                 >
                     <div className="flex flex-col items-center justify-center gap-[10px]">
                         <p className="italic">Processing File...</p>
-                        <p className="text-[14px] font-light">Please do not refresh the page</p>
+                        <p className="text-[14px] font-light">
+                            Please do not refresh the page
+                        </p>
                         <LoadingItem size={15} />
                     </div>
                 </div>
