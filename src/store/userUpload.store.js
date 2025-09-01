@@ -8,7 +8,7 @@ export const useUploadStore = create((set) => ({
     startUpload: async (file) => {
         set({ isUploading: true, error: null, result: null });
         try {
-            // await new Promise(res => setTimeout(res, 5000));
+            // await new Promise((res) => setTimeout(res, 5000));
             const res = await addUsersFromCSV(file);
             set({ result: res.data });
             return res;

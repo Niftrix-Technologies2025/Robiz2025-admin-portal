@@ -9,7 +9,10 @@ const UserVerificationListItem = ({
     lastname,
     email,
     btnText = "Verify User",
+    page = 1,
+    pageSize = 50,
 }) => {
+    const serialNumber = (page - 1) * pageSize + index + 1;
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const setVerified = async () => {
@@ -34,7 +37,7 @@ const UserVerificationListItem = ({
         rounded-[10px] bg-white px-[8px] gap-[5px] py-[5px] w-full justify-between 
         max-w-[800px] flex-shrink-0"
         >
-            <p className="w-[30px] truncate">{index + 1 ?? "null"}</p>
+            <p className="w-[30px] truncate">{serialNumber ?? "null"}</p>
             <p className="w-[40px] truncate">{user_id ?? "null"}</p>
             <p className="w-[120px] truncate">{firstname ?? "null"}</p>
             <p className="w-[120px] truncate">{lastname ?? "null"}</p>
