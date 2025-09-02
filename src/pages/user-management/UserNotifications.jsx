@@ -41,12 +41,12 @@ const UserNotifications = () => {
         }
     };
     return (
-        <div className="w-full h-full flex flex-col gap-[10px]">
+        <div className="w-full h-full flex flex-col gap-[10px] overflow-y-auto pr-[10px]">
             <UserNotificationCard sectionTitle={"Compose Email"}>
                 <textarea
                     placeholder="Type your message here..."
                     className="border border-gray-200 rounded p-2 
-                    max-h-[150px] min-h-[150px] w-full bg-white font-roboto text-[14px]"
+                    max-h-[150px] min-h-[150px] w-full bg-white font-dmSans text-[14px]"
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                 />
@@ -55,15 +55,17 @@ const UserNotifications = () => {
                 {recipientTypes.map((type) => (
                     <label
                         key={type.value}
-                        className="flex items-center gap-1 font-dmSans"
+                        className="flex items-center gap-[10px] font-dmSans"
                     >
                         <input
+                            className="radio size-[16px]"
                             type="radio"
                             name="recipientType"
                             value={type.value}
                             checked={recipientType === type.value}
                             onChange={() => setRecipientType(type.value)}
                         />
+                        {/* <input type="radio" name="radio-1" className="radio" defaultChecked /> */}
                         <span>{type.label}</span>
                     </label>
                 ))}
@@ -110,16 +112,17 @@ const UserNotifications = () => {
             <div className="h-[5px]" />
             <ReusableButton
                 btnText={"Send message"}
-                classname={`ml-[5px] w-[200px] border-none !rounded-[5px] !bg-red-500 disabled:!bg-gray-400 text-white 
+                classname={`ml-[5px] w-[200px] h-[40px] border-none !rounded-[5px] !bg-red-500 disabled:!bg-gray-400 text-white 
                     ${
                         !message
-                            ? `!text-gray-300 font-light cursor-default`
+                            ? `!text-gray-200 font-light cursor-default`
                             : ""
                     }`}
                 btnActive={!message}
                 onClick={sendNotificationHandler}
                 isLoading={isLoading}
             />
+            <div className="h-[10px]" />
         </div>
     );
 };
