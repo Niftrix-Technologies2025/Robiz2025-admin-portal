@@ -1,7 +1,7 @@
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import ReusableButton from "../../components/ReusableButton";
 import UserNotificationCard from "./components/UserNotificationCard";
-import { sendNotification } from "../../services/user.service";
+import { useNotificationStore } from "../../store/user.notification.store";
 const recipientTypes = [
     { label: "All Users", value: "all" },
     { label: "Verified Users", value: "verified" },
@@ -9,35 +9,34 @@ const recipientTypes = [
     { label: "Suspended Users", value: "suspended" },
 ];
 const UserNotifications = () => {
-    const [isLoading, setIsLoading] = useState(false);
-    const [message, setMessage] = useState("");
-    const [recipientType, setRecipientType] = useState("all");
-    const [attachments, setAttachments] = useState([]);
+    const {
+        isLoading,
+        message,
+        recipientType,
+        attachments,
+        setIsLoading,
+        setMessage,
+        setRecipientType,
+        setAttachments,
+        reset,
+        sendNotification,
+    } = useNotificationStore();
     const fileInputRef = useRef(null);
     const handleFileSelect = () => {
         fileInputRef.current.click();
+    };
+    const handleFileChange = (e) => {
+        setAttachments(Array.from(e.target.files));
+        e.target.value = "";
     };
     const handleRemoveAttachments = () => {
         setAttachments([]);
     };
     const sendNotificationHandler = async () => {
         try {
-            setIsLoading(true);
-            const res = await sendNotification(
-                message,
-                recipientType,
-                attachments
-            );
-            if (res.status === 200) {
-                setIsLoading(false);
-                setAttachments([]);
-                setMessage("");
-                setRecipientType("all");
-                // Show success message or handle response
-            }
+            await sendNotification();
         } catch (err) {
             console.error("Error sending notification:", err);
-            setIsLoading(false);
         }
     };
     return (
@@ -46,9 +45,10 @@ const UserNotifications = () => {
                 <textarea
                     placeholder="Type your message here..."
                     className="border border-gray-200 rounded p-2 
-                    max-h-[150px] min-h-[150px] w-full bg-white font-dmSans text-[14px]"
+                    max-h-[150px] min-h-[150px] w-full bg-white font-dmSans text-[15px] disabled:opacity-50"
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
+                    disabled={isLoading}
                 />
             </UserNotificationCard>
             <UserNotificationCard sectionTitle={"Select Recipient type"}>
@@ -58,14 +58,14 @@ const UserNotifications = () => {
                         className="flex items-center gap-[10px] font-dmSans"
                     >
                         <input
-                            className="radio size-[16px]"
+                            className="radio size-[16px] disabled:opacity-50"
                             type="radio"
                             name="recipientType"
                             value={type.value}
                             checked={recipientType === type.value}
                             onChange={() => setRecipientType(type.value)}
+                            disabled={isLoading}
                         />
-                        {/* <input type="radio" name="radio-1" className="radio" defaultChecked /> */}
                         <span>{type.label}</span>
                     </label>
                 ))}
@@ -76,21 +76,23 @@ const UserNotifications = () => {
                     style={{ display: "none" }}
                     type="file"
                     multiple
-                    onChange={(e) => {
-                        setAttachments(Array.from(e.target.files));
-                        e.target.value = "";
-                    }}
+                    onChange={handleFileChange}
                 />
                 <div className="flex flex-row gap-[10px]">
                     <ReusableButton
                         btnText={"Select Files"}
-                        classname={`w-[200px] !border-none !rounded-[5px]`}
+                        classname={`w-[200px] !border-none !rounded-[5px] ${
+                            isLoading ? "opacity-50" : ""
+                        }`}
                         onClick={handleFileSelect}
+                        btnActive={isLoading}
                     />
                     <ReusableButton
                         btnText={"Remove Attachments"}
-                        btnActive={attachments.length === 0}
-                        classname={`w-[200px] !border-none !rounded-[5px]`}
+                        btnActive={attachments.length === 0 || isLoading}
+                        classname={`w-[200px] !border-none !rounded-[5px] ${
+                            isLoading ? "opacity-50" : ""
+                        }`}
                         onClick={handleRemoveAttachments}
                     />
                 </div>
