@@ -40,23 +40,23 @@ const UserVerificationListItem = ({
         >
             <div className="flex flex-col truncate">
                 <p className={`${columnTitleStyle}`}>No</p>
-                <p className="w-[30px]">{serialNumber ?? "null"}</p>
+                <p className="w-[30px]">{serialNumber ?? "-"}</p>
             </div>
             <div className="flex flex-col truncate">
                 <p className={`${columnTitleStyle}`}>ID</p>
-                <p className="w-[40px]">{user_id ?? "null"}</p>
+                <p className="w-[40px]">{user_id ?? "-"}</p>
             </div>
             <div className="flex flex-col truncate">
                 <p className={`${columnTitleStyle}`}>Firstname</p>
-                <p className="w-[120px]">{firstname ?? "null"}</p>
+                <p className="w-[120px]">{firstname ?? "-"}</p>
             </div>
             <div className="flex flex-col truncate">
                 <p className={`${columnTitleStyle}`}>Lastname</p>
-                <p className="w-[120px] ">{lastname ?? "null"}</p>
+                <p className="w-[120px] ">{lastname ?? "-"}</p>
             </div>
             <div className="flex flex-col truncate">
                 <p className={`${columnTitleStyle}`}>Email</p>
-                <p className="w-[250px] truncate">{email ?? "null"}</p>
+                <p className="w-[250px] truncate">{email ?? "-"}</p>
             </div>
 
             <ListItemButton
