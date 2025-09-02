@@ -22,6 +22,7 @@ const searchAttributes = [
     { value: "mobile_number", label: "Phone Number" },
     { value: "district_id", label: "District ID" },
     { value: "club_name", label: "Club Name" },
+    // { value: "status", label: "Profile Status" },
 ];
 
 const SearchProfiles = () => {

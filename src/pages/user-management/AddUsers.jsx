@@ -1,10 +1,10 @@
-import { IoDocumentText,IoDocumentTextOutline } from "react-icons/io5";
+import { IoDocumentText, IoDocumentTextOutline } from "react-icons/io5";
 import { useRef, useState } from "react";
 import ReusableButton from "../../components/ReusableButton";
 import DataTemplateRow from "./components/DataTemplateRow";
 import LoadingItem from "../../components/LoadingItem";
 import { IoMdDownload } from "react-icons/io";
-import { useUploadStore } from "../../store/userUpload.store";
+import { useUploadStore } from "../../store/user.upload.store";
 
 const sampleData = [
     { label: "EMAIL ID", value: "example@example.com" },
@@ -91,7 +91,7 @@ const AddUsers = () => {
                         {selectedFile ? (
                             <div className="flex flex-col items-center justify-center gap-[10px]">
                                 <IoDocumentText className="size-[52px]" />
-                                
+
                                 <span className="text-black text-sm truncate max-w-[300px]">
                                     {selectedFile.name}
                                 </span>
