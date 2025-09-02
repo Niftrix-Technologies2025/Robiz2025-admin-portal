@@ -2,6 +2,7 @@ import { IoMdArrowRoundForward } from "react-icons/io";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { IoPlaySkipBackCircleOutline } from "react-icons/io5";
 import { IoPlaySkipForwardCircleOutline } from "react-icons/io5";
+// import Select from "react-select";
 
 const PaginationNavbar = ({
     pageNo,
