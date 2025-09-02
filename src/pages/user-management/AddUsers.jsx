@@ -1,4 +1,4 @@
-import { IoDocumentText } from "react-icons/io5";
+import { IoDocumentText,IoDocumentTextOutline } from "react-icons/io5";
 import { useRef, useState } from "react";
 import ReusableButton from "../../components/ReusableButton";
 import DataTemplateRow from "./components/DataTemplateRow";
@@ -90,7 +90,8 @@ const AddUsers = () => {
                     >
                         {selectedFile ? (
                             <div className="flex flex-col items-center justify-center gap-[10px]">
-                                <IoDocumentText className="size-[42px]" />
+                                <IoDocumentText className="size-[52px]" />
+                                
                                 <span className="text-black text-sm truncate max-w-[300px]">
                                     {selectedFile.name}
                                 </span>
@@ -103,6 +104,7 @@ const AddUsers = () => {
                             </div>
                         ) : (
                             <div className="flex flex-col items-center justify-center gap-[10px]">
+                                <IoDocumentTextOutline className="size-[52px]" />
                                 <p className="font-bold text-gray-700">
                                     Upload .csv file
                                 </p>

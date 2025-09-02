@@ -2,10 +2,9 @@ import { useEffect, useState } from "react";
 import { fetchUnverifiedUsers } from "../../services/user.service";
 import UserVerificationListItem from "./components/UserVerificationListItem";
 import LoadingItem from "../../components/LoadingItem";
-import PaginationNavbar from "./components/PaginationNavbar";
+import PaginationNavbar from "../../components/PaginationNavbar";
 import { usePagination } from "../../hooks/usePagination";
 import { useLoading } from "../../hooks/useLoading";
-import UserVerificationListHeader from "./components/UserVerificationListHeader";
 
 const PAGE_SIZE = 100; //100 results per page
 
@@ -35,29 +34,22 @@ const UserVerification = () => {
     }, [page]);
 
     return (
-        <div className="flex flex-col w-full h-full">
-            {isLoading ? (
-                <LoadingItem size={10} classname="" />
-            ) : pendingUsers.length > 0 ? (
-                <div className="flex flex-col w-full h-full gap-[5px]">
-                    <div className="flex flex-row gap-[10px] max-sm:gap-[5px] items-center">
-                        <p
-                            className="font-dmSans whitespace-nowrap 
-                            max-sm:text-[12px] font-semibold bg-white py-[5px] px-[7px] max-sm:py-[7px] max-sm:px-[8px] rounded-[10px] border-gray-200 border-[1.5px]"
-                        >
-                            {total} users pending verification!
-                        </p>
-                        <PaginationNavbar
-                            pageNo={page}
-                            totalPages={totalPages}
-                            backwardAction={() => setPage(page - 1)}
-                            skipBackwardAction={() => setPage(1)}
-                            forwardAction={() => setPage(page + 1)}
-                            skipForwardAction={() => setPage(totalPages)}
-                        />
-                    </div>
-                    <UserVerificationListHeader />
-                    <div className="flex-1 overflow-y-auto mb-[20px] w-full h-full">
+        <div className="flex flex-col w-full h-full gap-[5px]">
+            <div className="flex flex-col w-full h-full gap-[5px]">
+                <div className="flex flex-row gap-[10px] max-sm:gap-[5px] items-center">
+                    <PaginationNavbar
+                        pageNo={page}
+                        totalPages={totalPages}
+                        backwardAction={() => setPage(page - 1)}
+                        skipBackwardAction={() => setPage(1)}
+                        forwardAction={() => setPage(page + 1)}
+                        skipForwardAction={() => setPage(totalPages)}
+                    />
+                </div>
+                {isLoading ? (
+                    <LoadingItem size={10} classname="" />
+                ) : pendingUsers.length > 0 ? (
+                    <div className="flex-1 overflow-y-auto mb-[20px] w-full h-full pr-[3px]">
                         {pendingUsers.map((user, index) => (
                             <UserVerificationListItem
                                 index={index}
@@ -71,15 +63,15 @@ const UserVerification = () => {
                             />
                         ))}
                     </div>
-                </div>
-            ) : (
-                <div
-                    className="w-full h-full font-dmSans flex 
-                    justify-start items-start pt-[20px]"
-                >
-                    No Pending Users!
-                </div>
-            )}
+                ) : (
+                    <div
+                        className="w-full h-full font-dmSans flex 
+                        justify-start items-start pt-[20px]"
+                    >
+                        No Pending Users!
+                    </div>
+                )}
+            </div>
         </div>
     );
 };

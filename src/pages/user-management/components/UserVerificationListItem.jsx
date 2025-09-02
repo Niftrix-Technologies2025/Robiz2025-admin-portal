@@ -2,6 +2,7 @@ import { setUserAsVerified } from "../../../services/user.service";
 import { useState } from "react";
 import CustomModal from "../../../components/modals/CustomModal";
 import ListItemButton from "../../../components/ListItemButton";
+const columnTitleStyle = "font-medium text-[12px] text-gray-600";
 const UserVerificationListItem = ({
     index,
     user_id,
@@ -37,11 +38,27 @@ const UserVerificationListItem = ({
         rounded-[10px] bg-white px-[8px] gap-[5px] py-[5px] w-full justify-between 
         max-w-[800px] flex-shrink-0"
         >
-            <p className="w-[30px] truncate">{serialNumber ?? "null"}</p>
-            <p className="w-[40px] truncate">{user_id ?? "null"}</p>
-            <p className="w-[120px] truncate">{firstname ?? "null"}</p>
-            <p className="w-[120px] truncate">{lastname ?? "null"}</p>
-            <p className="w-[250px] truncate">{email ?? "null"}</p>
+            <div className="flex flex-col truncate">
+                <p className={`${columnTitleStyle}`}>No</p>
+                <p className="w-[30px]">{serialNumber ?? "null"}</p>
+            </div>
+            <div className="flex flex-col truncate">
+                <p className={`${columnTitleStyle}`}>ID</p>
+                <p className="w-[40px]">{user_id ?? "null"}</p>
+            </div>
+            <div className="flex flex-col truncate">
+                <p className={`${columnTitleStyle}`}>Firstname</p>
+                <p className="w-[120px]">{firstname ?? "null"}</p>
+            </div>
+            <div className="flex flex-col truncate">
+                <p className={`${columnTitleStyle}`}>Lastname</p>
+                <p className="w-[120px] ">{lastname ?? "null"}</p>
+            </div>
+            <div className="flex flex-col truncate">
+                <p className={`${columnTitleStyle}`}>Email</p>
+                <p className="w-[250px] truncate">{email ?? "null"}</p>
+            </div>
+
             <ListItemButton
                 btnText={btnText}
                 onClick={() => {

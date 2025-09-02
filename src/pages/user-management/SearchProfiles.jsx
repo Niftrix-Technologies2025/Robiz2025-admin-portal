@@ -9,7 +9,7 @@ import SearchListItem from "./components/SearchListItem";
 import ReusableButton from "../../components/ReusableButton";
 import LoadingItem from "../../components/LoadingItem";
 import ReusableMessage from "../../components/ReusableMessage";
-import PaginationNavbar from "./components/PaginationNavbar";
+import PaginationNavbar from "../../components/PaginationNavbar";
 import { usePagination } from "../../hooks/usePagination";
 import { useLoading } from "../../hooks/useLoading";
 
