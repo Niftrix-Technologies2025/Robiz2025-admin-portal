@@ -3,12 +3,11 @@ import { fetchUnverifiedUsers } from "../../services/user.service";
 import UserVerificationListItem from "./components/UserVerificationListItem";
 import LoadingItem from "../../components/LoadingItem";
 import PaginationNavbar from "./components/PaginationNavbar";
-
 import { usePagination } from "../../hooks/usePagination";
 import { useLoading } from "../../hooks/useLoading";
 import UserVerificationListHeader from "./components/UserVerificationListHeader";
 
-const PAGE_SIZE = 50; //100 results per page
+const PAGE_SIZE = 100; //100 results per page
 
 const UserVerification = () => {
     const { page, setPage, total, setTotal, totalPages } =
@@ -40,7 +39,6 @@ const UserVerification = () => {
             {isLoading ? (
                 <LoadingItem size={10} classname="" />
             ) : pendingUsers.length > 0 ? (
-                // <div className="flex-1 overflow-y-auto">
                 <div className="flex flex-col w-full h-full gap-[5px]">
                     <div className="flex flex-row gap-[10px] max-sm:gap-[5px] items-center">
                         <p

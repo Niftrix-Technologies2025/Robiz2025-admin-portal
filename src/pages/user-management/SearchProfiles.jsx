@@ -10,8 +10,10 @@ import ReusableButton from "../../components/ReusableButton";
 import LoadingItem from "../../components/LoadingItem";
 import ReusableMessage from "../../components/ReusableMessage";
 import PaginationNavbar from "./components/PaginationNavbar";
+import { usePagination } from "../../hooks/usePagination";
+import { useLoading } from "../../hooks/useLoading";
 
-const PAGE_SIZE = 50; //100 results per page
+const PAGE_SIZE = 100; //100 results per page
 
 const searchAttributes = [
     { value: "email", label: "Email ID" },
@@ -23,18 +25,19 @@ const searchAttributes = [
 ];
 
 const SearchProfiles = () => {
-    const [isLoading, setIsLoading] = useState(false);
+    const { page, setPage, total, setTotal, totalPages } =
+        usePagination(PAGE_SIZE);
+    const { isLoading, setIsLoading } = useLoading();
     const [searchResults, setSearchResults] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
     const [selectedAttribute, setSelectedAttribute] = useState(
         searchAttributes[0]
     );
     const btnActive = searchResults.length === 0;
-    const [page, setPage] = useState(1);
-    const [total, setTotal] = useState(0);
     useEffect(() => {
         setSearchQuery("");
         setSearchResults([]);
+        setPage(1);
     }, [selectedAttribute]);
     useEffect(() => {
         try {
@@ -47,23 +50,20 @@ const SearchProfiles = () => {
                         page,
                         PAGE_SIZE
                     );
-                    const data = Array.isArray(res.data)
-                        ? res.data
-                        : Object.values(res.data);
-                    setSearchResults(data[1]);
-                    // setTotal(res.data.total || 0);
+                    setSearchResults(res.data.users || []);
+                    setTotal(res.data.total || 1);
                     setIsLoading(false);
                 };
                 fetchProfilesByAttribute();
             } else {
                 setSearchResults([]);
+                setTotal(1);
             }
         } catch (err) {
             console.error(err);
             setIsLoading(false);
         }
-    }, [searchQuery]);
-    const totalPages = Math.ceil(total / PAGE_SIZE);
+    }, [searchQuery, page]);
 
     const handleDownloadCSV = () => {
         const csv = convertToCSV(searchResults);
@@ -93,10 +93,10 @@ const SearchProfiles = () => {
         return csvRows.join("\n");
     }
 
-    const handleStatusChange = (userId, newStatus) => {
+    const handleStatusChange = (user_id, newStatus) => {
         setSearchResults((prev) =>
             prev.map((user) =>
-                user.userId === userId ? { ...user, status: newStatus } : user
+                user.user_id === user_id ? { ...user, status: newStatus } : user
             )
         );
     };

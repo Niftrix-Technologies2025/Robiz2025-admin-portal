@@ -1,7 +1,7 @@
-import { FaCircleArrowRight } from "react-icons/fa6";
-import { FaCircleArrowLeft } from "react-icons/fa6";
-import { IoPlaySkipForwardCircle } from "react-icons/io5";
-import { IoPlaySkipBackCircle } from "react-icons/io5";
+import { IoMdArrowRoundForward } from "react-icons/io";
+import { IoMdArrowRoundBack } from "react-icons/io";
+import { IoPlaySkipBackCircleOutline } from "react-icons/io5";
+import { IoPlaySkipForwardCircleOutline } from "react-icons/io5";
 
 const PaginationNavbar = ({
     pageNo,
@@ -16,7 +16,7 @@ const PaginationNavbar = ({
     return (
         <div
             className="flex flex-row items-center justify-center gap-[5px] bg-white rounded-[10px] 
-        border-gray-200 border-[1.5px] w-[200px] p-[3px]"
+        border-gray-200 border-[1.5px] w-[200px] max-sm:w-[150px] py-[3px]"
         >
             <button
                 disabled={atBeginning}
@@ -24,7 +24,7 @@ const PaginationNavbar = ({
                 className="cursor-pointer disabled:opacity-50 disabled:cursor-default"
                 onClick={skipBackwardAction}
             >
-                <IoPlaySkipBackCircle className="size-[28px] " />
+                <IoPlaySkipBackCircleOutline className="size-[25px] " />
             </button>
 
             <button
@@ -33,10 +33,11 @@ const PaginationNavbar = ({
                 className={`flex items-center justify-center cursor-pointer disabled:opacity-50 disabled:cursor-default`}
                 title="Previous page"
             >
-                <FaCircleArrowLeft className="size-[22px]" />
+                <IoMdArrowRoundBack className="size-[22px]" />
             </button>
-            <p className="font-dmSans text-[16px] max-sm:text-[12px] whitespace-nowrap px-[5px]">
-                Page {pageNo}/{totalPages}
+            <p className="font-dmSans text-[16px] max-sm:text-[12px] whitespace-nowrap px-[5px] truncate w-[75px] max-md:w-[40px] text-center">
+                <span className="max-md:hidden">Page</span> {pageNo}/
+                {totalPages}
             </p>
             <button
                 disabled={atEnd}
@@ -44,7 +45,7 @@ const PaginationNavbar = ({
                 className={`flex items-center justify-center cursor-pointer disabled:opacity-50 disabled:cursor-default`}
                 title="Next page"
             >
-                <FaCircleArrowRight className="size-[22px]" />
+                <IoMdArrowRoundForward className="size-[22px]" />
             </button>
             <button
                 disabled={atEnd}
@@ -52,7 +53,7 @@ const PaginationNavbar = ({
                 title="Skip to last page"
                 onClick={skipForwardAction}
             >
-                <IoPlaySkipForwardCircle className="size-[28px]" />
+                <IoPlaySkipForwardCircleOutline className="size-[25px]" />
             </button>
         </div>
     );
