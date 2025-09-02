@@ -70,7 +70,7 @@ const AddUsers = () => {
             {isUploading ? (
                 <div
                     className="w-full h-[90%] flex flex-col items-center justify-center 
-                bg-white rounded-[5px] border-gray-500 border-[1.5px]"
+                    bg-white rounded-[5px] border-gray-500 border-[1.5px]"
                 >
                     <div className="flex flex-col items-center justify-center gap-[10px]">
                         <p className="italic">Processing File...</p>
@@ -85,7 +85,7 @@ const AddUsers = () => {
                     <DataTemplateRow data={sampleData} />
                     <div
                         className="w-full h-full border-2 border-dashed rounded-[5px]  
-                    flex flex-col items-center justify-center gap-[20px] cursor-pointer bg-white"
+                        flex flex-col items-center justify-center gap-[20px] cursor-pointer bg-white"
                         onClick={handleButtonClick}
                     >
                         {selectedFile ? (

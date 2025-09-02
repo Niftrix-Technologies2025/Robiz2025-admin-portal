@@ -69,7 +69,7 @@ const UserVerificationListItem = ({
             {isModalOpen && (
                 <CustomModal
                     primaryText={"USER VERIFICATION"}
-                    secondaryText={"Are you sure you want to verify this user?"}
+                    secondaryText={`Are you sure you want to verify ID: ${user_id}?`}
                     positiveText={"Yes"}
                     negativeText={"No"}
                     isOpen={isModalOpen}

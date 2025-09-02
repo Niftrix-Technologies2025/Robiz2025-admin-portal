@@ -58,7 +58,7 @@ const UserNotifications = () => {
                         className="flex items-center gap-[10px] font-dmSans"
                     >
                         <input
-                            className="radio size-[16px] disabled:opacity-50"
+                            className="size-[16px] disabled:opacity-50"
                             type="radio"
                             name="recipientType"
                             value={type.value}

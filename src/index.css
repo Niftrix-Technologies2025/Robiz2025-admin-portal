@@ -4,7 +4,7 @@
 @import "tailwindcss";
 @plugin 'tailwind-scrollbar';
 @import 'tailwind-scrollbar-hide/v4';
-@plugin "daisyui";
+/* @plugin "daisyui"; */
 
 @theme {
     --font-roboto: "Roboto", "sans-serif";

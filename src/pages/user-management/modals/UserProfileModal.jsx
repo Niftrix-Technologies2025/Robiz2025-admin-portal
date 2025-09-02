@@ -34,7 +34,7 @@ const UserProfileModal = ({
             console.log(err);
             setIsLoading(false);
         }
-    }, []);
+    }, [userId]);
     const suspendUserHandler = async () => {
         try {
             setIsLoading(true);

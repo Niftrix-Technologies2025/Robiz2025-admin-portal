@@ -133,7 +133,7 @@ const SearchProfiles = () => {
                         <MdOutlinePersonSearch className="w-[24px] h-[24px] text-gray-500" />
                     </div>
                 </div>
-                <div className="flex flex-row max-md:flex-col items-center justify-center gap-[10px] max;sm:gap-[5px]">
+                <div className="flex flex-row max-md:flex-col items-center justify-center gap-[10px] max-sm:gap-[5px]">
                     <PaginationNavbar
                         pageNo={page}
                         totalPages={totalPages}
@@ -170,9 +170,9 @@ const SearchProfiles = () => {
                         icon={<CgSmileNone className="size-[40px]" />}
                     />
                 ) : (
-                    searchResults.map((result, index) => (
+                    searchResults.map((result) => (
                         <SearchListItem
-                            key={index}
+                            key={result.user_id}
                             user={result}
                             onStatusChange={handleStatusChange}
                         />
