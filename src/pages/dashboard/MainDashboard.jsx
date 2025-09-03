@@ -1,9 +1,9 @@
-// import React from 'react'
-
 const MainDashboard = () => {
-  return (
-    <div className="flex flex-col w-full h-full">MainDashboard</div>
-  )
-}
+    return (
+        <div className="flex flex-col w-full h-full">
+            <p>Main Dashboard</p>
+        </div>
+    );
+};
 
-export default MainDashboard
+export default MainDashboard;
