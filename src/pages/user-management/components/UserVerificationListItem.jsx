@@ -35,8 +35,7 @@ const UserVerificationListItem = ({
     return (
         <div
             className="flex flex-row items-center border-[0.5px] border-gray-200 font-dmSans truncate my-[5px] 
-        rounded-[10px] bg-white px-[8px] gap-[5px] py-[5px] w-full justify-between 
-        max-w-[800px] flex-shrink-0"
+            rounded-[10px] bg-white px-[8px] gap-[5px] py-[5px] w-full justify-between flex-shrink-0"
         >
             <div className="flex flex-col truncate">
                 <p className={`${columnTitleStyle}`}>No</p>

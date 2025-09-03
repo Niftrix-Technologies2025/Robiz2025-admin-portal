@@ -34,7 +34,7 @@ const UserVerification = () => {
     }, [page]);
 
     return (
-        <div className="flex flex-col w-full h-full gap-[5px]">
+        <div className="flex flex-col w-full h-full gap-[5px] max-w-[1024px]">
             <div className="flex flex-col w-full h-full gap-[5px]">
                 <div className="flex flex-row gap-[10px] max-sm:gap-[5px] items-center">
                     <PaginationNavbar
