@@ -91,7 +91,11 @@ const AddUsers = () => {
                 >
                     <ErrorMessage
                         title={"Unable to add users"}
-                        errorMsg={error?.message || "null"}
+                        errorMsg={
+                            error?.response?.data?.error ||
+                            error?.message ||
+                            "null"
+                        }
                         resetMsg={"Please try again"}
                         resetFn={handleReset}
                     />

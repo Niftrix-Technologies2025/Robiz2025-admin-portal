@@ -131,7 +131,9 @@ const UserNotifications = () => {
             ) : isError ? (
                 <ErrorMessage
                     title={"Unable to send mail"}
-                    errorMsg={error?.message || "null"}
+                    errorMsg={
+                        error?.response?.data?.error || error?.message || "null"
+                    }
                     resetMsg={"Please try again"}
                     resetFn={handleReset}
                     className={"pl-[10px] !items-start"}
