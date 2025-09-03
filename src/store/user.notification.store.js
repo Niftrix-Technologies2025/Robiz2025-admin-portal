@@ -11,10 +11,10 @@ export const useNotificationStore = create((set, get) => ({
     setRecipientType: (recipientType) => set({ recipientType }),
     setAttachments: (attachments) => set({ attachments }),
     error: null,
-    isError: false,
+    isError: true,
     sendNotification: async () => {
         const { message, recipientType, attachments } = get();
-        set({ isLoading: true });
+        set({ isLoading: true, error: null, isError: false });
         try {
             const res = await sendNotificationApi(
                 message,
@@ -22,7 +22,7 @@ export const useNotificationStore = create((set, get) => ({
                 attachments
             );
             if (res.status === 200) {
-                set({ isLoading: false });
+                set({ isLoading: false, error: null, isError: false });
                 get().reset();
             }
             return res;
