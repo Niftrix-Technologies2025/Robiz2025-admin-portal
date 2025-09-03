@@ -2,6 +2,8 @@ import { useRef } from "react";
 import ReusableButton from "../../components/ReusableButton";
 import UserNotificationCard from "./components/UserNotificationCard";
 import { useNotificationStore } from "../../store/user.notification.store";
+import LoadingMessage from "../../components/LoadingMessage";
+import ErrorMessage from "../../components/ErrorMessage";
 const recipientTypes = [
     { label: "All Users", value: "all" },
     { label: "Verified Users", value: "verified" },
@@ -14,12 +16,13 @@ const UserNotifications = () => {
         message,
         recipientType,
         attachments,
-        setIsLoading,
         setMessage,
         setRecipientType,
         setAttachments,
         reset,
         sendNotification,
+        error,
+        isError,
     } = useNotificationStore();
     const fileInputRef = useRef(null);
     const handleFileSelect = () => {
@@ -39,8 +42,12 @@ const UserNotifications = () => {
             console.error("Error sending notification:", err);
         }
     };
+    const handleReset = () => {
+        fileInputRef.current.value = "";
+        reset();
+    };
     return (
-        <div className="w-full h-full flex flex-col gap-[10px] overflow-y-auto pr-[10px]">
+        <div className="w-full h-full flex flex-col gap-[10px] overflow-y-auto pr-[10px] max-w-[1024px]">
             <UserNotificationCard sectionTitle={"Compose Email"}>
                 <textarea
                     placeholder="Type your message here..."
@@ -48,7 +55,7 @@ const UserNotifications = () => {
                     max-h-[150px] min-h-[150px] w-full bg-white font-dmSans text-[15px] disabled:opacity-50"
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    disabled={isLoading}
+                    disabled={isLoading || isError}
                 />
             </UserNotificationCard>
             <UserNotificationCard sectionTitle={"Select Recipient type"}>
@@ -64,7 +71,7 @@ const UserNotifications = () => {
                             value={type.value}
                             checked={recipientType === type.value}
                             onChange={() => setRecipientType(type.value)}
-                            disabled={isLoading}
+                            disabled={isLoading || isError}
                         />
                         <span>{type.label}</span>
                     </label>
@@ -85,11 +92,13 @@ const UserNotifications = () => {
                             isLoading ? "opacity-50" : ""
                         }`}
                         onClick={handleFileSelect}
-                        btnActive={isLoading}
+                        btnActive={isLoading || isError}
                     />
                     <ReusableButton
                         btnText={"Remove Attachments"}
-                        btnActive={attachments.length === 0 || isLoading}
+                        btnActive={
+                            attachments.length === 0 || isLoading || isError
+                        }
                         classname={`w-[200px] !border-none !rounded-[5px] ${
                             isLoading ? "opacity-50" : ""
                         }`}
@@ -101,8 +110,8 @@ const UserNotifications = () => {
                     <ul className="flex flex-row flex-wrap gap-[5px] mt-2 text-sm text-gray-700">
                         {attachments.map((file, idx) => (
                             <li
-                                className="bg-gray-300 border-2 border-white 
-                                text-textColorAlt rounded-[5px] p-[3px] font-medium"
+                                className="bg-gray-300 text-textColorAlt
+                                rounded-[5px] py-[3px] px-[4px] font-medium"
                                 key={idx}
                             >
                                 {file.name}
@@ -112,18 +121,35 @@ const UserNotifications = () => {
                 )}
             </UserNotificationCard>
             <div className="h-[5px]" />
-            <ReusableButton
-                btnText={"Send message"}
-                classname={`ml-[5px] w-[200px] h-[40px] border-none !rounded-[5px] !bg-red-500 disabled:!bg-gray-400 text-white 
+            {isLoading ? (
+                <LoadingMessage
+                    title={"Sending email..."}
+                    warning={"Please do not refresh the page"}
+                    className={"!items-start"}
+                    size={8}
+                />
+            ) : isError ? (
+                <ErrorMessage
+                    title={"Unable to send mail"}
+                    errorMsg={error?.message || "null"}
+                    resetMsg={"Please try again"}
+                    resetFn={handleReset}
+                    className={"pl-[10px] !items-start"}
+                />
+            ) : (
+                <ReusableButton
+                    btnText={"Send message"}
+                    classname={`ml-[5px] w-[200px] h-[40px] border-none !rounded-[5px] !bg-red-500 
+                    disabled:!bg-gray-400 text-white 
                     ${
                         !message
                             ? `!text-gray-200 font-light cursor-default`
                             : ""
                     }`}
-                btnActive={!message}
-                onClick={sendNotificationHandler}
-                isLoading={isLoading}
-            />
+                    btnActive={!message}
+                    onClick={sendNotificationHandler}
+                />
+            )}
             <div className="h-[10px]" />
         </div>
     );

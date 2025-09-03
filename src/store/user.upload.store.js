@@ -5,6 +5,7 @@ export const useUploadStore = create((set) => ({
     isUploading: false,
     result: null,
     error: null,
+    isError: false,
     startUpload: async (file) => {
         set({ isUploading: true, error: null, result: null });
         try {
@@ -13,11 +14,12 @@ export const useUploadStore = create((set) => ({
             set({ result: res.data });
             return res;
         } catch (err) {
-            set({ error: err });
+            set({ error: err, isError: true });
             throw err;
         } finally {
             set({ isUploading: false });
         }
     },
-    reset: () => set({ isUploading: false, result: null, error: null }),
+    reset: () =>
+        set({ isUploading: false, result: null, error: null, isError: false }),
 }));

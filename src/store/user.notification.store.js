@@ -10,13 +10,8 @@ export const useNotificationStore = create((set, get) => ({
     setMessage: (message) => set({ message }),
     setRecipientType: (recipientType) => set({ recipientType }),
     setAttachments: (attachments) => set({ attachments }),
-    reset: () =>
-        set({
-            isLoading: false,
-            message: "",
-            recipientType: "all",
-            attachments: [],
-        }),
+    error: null,
+    isError: false,
     sendNotification: async () => {
         const { message, recipientType, attachments } = get();
         set({ isLoading: true });
@@ -32,8 +27,17 @@ export const useNotificationStore = create((set, get) => ({
             }
             return res;
         } catch (err) {
-            set({ isLoading: false });
+            set({ isLoading: false, error: err, isError: true });
             throw err;
         }
     },
+    reset: () =>
+        set({
+            isLoading: false,
+            message: "",
+            recipientType: "all",
+            attachments: [],
+            error: null,
+            isError: false,
+        }),
 }));
