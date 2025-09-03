@@ -11,7 +11,7 @@ export const useNotificationStore = create((set, get) => ({
     setRecipientType: (recipientType) => set({ recipientType }),
     setAttachments: (attachments) => set({ attachments }),
     error: null,
-    isError: true,
+    isError: false,
     sendNotification: async () => {
         const { message, recipientType, attachments } = get();
         set({ isLoading: true, error: null, isError: false });
