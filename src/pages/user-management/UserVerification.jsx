@@ -31,7 +31,7 @@ const UserVerification = () => {
             }
         };
         fetchUserData();
-    }, [page]);
+    }, [page, PAGE_SIZE]);
 
     return (
         <div className="flex flex-col w-full h-full gap-[5px] max-w-[1024px]">
@@ -49,7 +49,7 @@ const UserVerification = () => {
                 {isLoading ? (
                     <LoadingItem size={10} classname="" />
                 ) : pendingUsers.length > 0 ? (
-                    <div className="flex-1 overflow-y-auto mb-[20px] w-full h-full pr-[3px]">
+                    <div className="flex flex-col overflow-y-auto w-full h-full pr-[3px]">
                         {pendingUsers.map((user, index) => (
                             <UserVerificationListItem
                                 index={index}

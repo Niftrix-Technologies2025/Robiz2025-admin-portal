@@ -1,10 +1,10 @@
 import { BeatLoader } from "react-spinners";
-const ListItemButton = ({ btnText, isLoading, onClick }) => {
+const ListItemButton = ({ btnText, isLoading, onClick ,classname}) => {
     return (
         <button
-            className={`flex items-center justify-center w-[100px] h-[30px] 
-            cursor-pointer bg-btnGradient4 rounded-[30px] p-[5px] whitespace-nowrap
-            shadow-sm hover:shadow-md transition-all duration-150`}
+            className={`flex items-center justify-center h-[30px] 
+            cursor-pointer bg-btnGradient4 rounded-[30px] py-[5px] px-[8px] whitespace-nowrap
+            shadow-sm hover:shadow-md transition-all duration-150 ${classname}`}
             disabled={isLoading}
             onClick={onClick}
         >

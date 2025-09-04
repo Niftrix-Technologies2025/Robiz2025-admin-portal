@@ -14,30 +14,47 @@ const SearchListItem = ({ user, onStatusChange }) => {
         >
             <div className="flex flex-col truncate">
                 <p className={`${columnTitleStyle}`}>ID</p>
-                <p className="w-[40px]">{user.user_id ?? "-"}</p>
+                <p className="w-[40px] overflow-x-auto scrollbar-hide">
+                    {user.user_id ?? "-"}
+                </p>
             </div>
             <div className="flex flex-col truncate">
                 <p className={`${columnTitleStyle}`}>Name</p>
-                <p className="w-[150px]">
+                <p className="w-[150px] overflow-x-auto scrollbar-hide">
                     {user.firstname ?? "-"} {user.lastname}
                 </p>
             </div>
             <div className="flex flex-col truncate">
                 <p className={`${columnTitleStyle}`}>District ID</p>
-                <p className="w-[100px]">{user.district_id ?? "-"}</p>
+                <p className="w-[100px] overflow-x-auto scrollbar-hide">
+                    {user.district_id ?? "-"}
+                </p>
             </div>
             <div className="flex flex-col truncate">
                 <p className={`${columnTitleStyle}`}>Club Name</p>
-                <p className="w-[320px]">{user.club_name ?? "-"}</p>
+                <p className="w-[320px] overflow-x-auto scrollbar-hide">
+                    {user.club_name ?? "-"}
+                </p>
             </div>
             <div className="flex flex-col truncate">
                 <p className={`${columnTitleStyle}`}>Email</p>
-                <p className="w-[200px]">{user.email ?? "-"}</p>
+                <p className="w-[200px] overflow-x-auto scrollbar-hide">
+                    {user.email ?? "-"}
+                </p>
             </div>
             <div className="flex flex-col truncate">
                 <p className={`${columnTitleStyle}`}>Status</p>
-                <p className="w-[100px] truncate">{user.status ?? "-"}</p>
+                <p className="w-[100px] truncate overflow-x-auto scrollbar-hide">
+                    {user.status ?? "-"}
+                </p>
             </div>
+            <ListItemButton
+                btnText={"Activity History"}
+                onClick={() => {
+                    setIsModalOpen(true);
+                }}
+                classname={""}
+            />
             <ListItemButton
                 btnText={"View Profile"}
                 onClick={() => {

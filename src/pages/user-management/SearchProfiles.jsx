@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Select from "react-select";
 import { TbFileDownload } from "react-icons/tb";
 import { CgSmileNone } from "react-icons/cg";
@@ -152,7 +151,7 @@ const SearchProfiles = () => {
                 </div>
             </div>
             <div
-                className="w-full h-[89%] bg-white flex flex-col rounded-[10px] border-[1px] 
+                className="flex flex-col w-full h-[89%] bg-white rounded-[10px] border-[1px] 
             border-gray-500 mt-[10px] p-[10px] overflow-y-auto gap-[10px] mb-[20px]"
             >
                 {isLoading ? (

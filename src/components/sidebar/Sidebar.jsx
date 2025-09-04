@@ -2,6 +2,9 @@ import SidebarItem from "./SidebarItem";
 import { MdOutlineSpaceDashboard } from "react-icons/md";
 import { FaUsers } from "react-icons/fa";
 import { GoLog } from "react-icons/go";
+// import { IoIosSettings } from "react-icons/io";
+import { MdPaid } from "react-icons/md";
+import { RiListSettingsLine } from "react-icons/ri";
 import { robizLogo } from "../../assets/icons";
 
 const Sidebar = () => {
@@ -29,6 +32,16 @@ const Sidebar = () => {
                 displayName="Action Log"
                 url="/action-log"
                 icon={<GoLog />}
+            />
+            <SidebarItem
+                displayName="Paid Services"
+                url="/paid-services"
+                icon={<MdPaid className="size-[18px]" />}
+            />
+            <SidebarItem
+                displayName="System Settings"
+                url="/action-log"
+                icon={<RiListSettingsLine className="size-[18px]" />}
             />
         </div>
     );
