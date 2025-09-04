@@ -13,6 +13,8 @@ import UserVerification from "./pages/user-management/UserVerification";
 import SearchProfiles from "./pages/user-management/SearchProfiles";
 import UserNotifications from "./pages/user-management/UserNotifications";
 import AddUsers from "./pages/user-management/AddUsers";
+import PaidServicesLayout from "./pages/paid-services/layouts/PaidServicesLayout";
+import AllPayments from "./pages/paid-services/AllPayments";
 
 function App() {
     return (
@@ -53,6 +55,19 @@ function App() {
                             element={<UserNotifications />}
                         />
                         <Route path="add-users" element={<AddUsers />} />
+                    </Route>
+                    <Route
+                        path="/paid-services"
+                        element={<PaidServicesLayout />}
+                    >
+                        <Route
+                            index
+                            element={<Navigate to="all-payments" replace />}
+                        />
+                        <Route
+                            path="all-payments"
+                            element={<AllPayments />}
+                        />
                     </Route>
                 </Route>
 
