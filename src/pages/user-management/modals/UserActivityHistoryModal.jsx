@@ -1,5 +1,5 @@
-import { Modal } from "react-modal";
-const UserActivityHistoryModal = () => {
+import Modal from "react-modal";
+const UserActivityHistoryModal = ({ isOpen, onRequestClose }) => {
     return (
         <Modal
             isOpen={isOpen}

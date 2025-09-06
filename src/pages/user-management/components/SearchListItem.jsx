@@ -1,9 +1,11 @@
 import { useState } from "react";
 import ListItemButton from "../../../components/ListItemButton";
 import UserProfileModal from "../modals/UserProfileModal";
+import UserActivityHistoryModal from "../modals/UserActivityHistoryModal";
 const columnTitleStyle = "font-medium text-[12px] text-gray-600";
 const SearchListItem = ({ user, onStatusChange }) => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
+    const [isActivityModalOpen, setIsActivityModalOpen] = useState(false);
     // const changeStatusHandler = () => {
     // };
     return (
@@ -51,21 +53,29 @@ const SearchListItem = ({ user, onStatusChange }) => {
             <ListItemButton
                 btnText={"Activity History"}
                 onClick={() => {
-                    setIsModalOpen(true);
+                    setIsActivityModalOpen(true);
                 }}
                 classname={""}
             />
             <ListItemButton
                 btnText={"View Profile"}
                 onClick={() => {
-                    setIsModalOpen(true);
+                    setIsProfileModalOpen(true);
                 }}
             />
-            {isModalOpen && (
+            {isActivityModalOpen && (
+                <UserActivityHistoryModal
+                    // userId={user.user_id}
+                    isOpen={isActivityModalOpen}
+                    onRequestClose={() => setIsActivityModalOpen(false)}
+                    // onStatusChange={onStatusChange}
+                />
+            )}
+            {isProfileModalOpen && (
                 <UserProfileModal
                     userId={user.user_id}
-                    isOpen={isModalOpen}
-                    onRequestClose={() => setIsModalOpen(false)}
+                    isOpen={isProfileModalOpen}
+                    onRequestClose={() => setIsProfileModalOpen(false)}
                     onStatusChange={onStatusChange}
                 />
             )}
