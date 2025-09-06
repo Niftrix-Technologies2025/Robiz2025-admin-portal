@@ -1,10 +1,11 @@
 const columnTitleStyle = "font-medium text-[12px] text-gray-600";
 
-const AllPaymentsListItem = ({ result }) => {
+const AllPaymentsListItem = ({ index, result, page, pageSize }) => {
+    const serialNumber = (page - 1) * pageSize + index + 1;
     return (
         <div
             className="flex flex-row items-center justify-between
-        bg-white rounded-[10px] border-[1.5px] border-gray-200 px-[8px] gap-[5px] py-[5px]
+        bg-white rounded-[10px] border-[1.5px] border-gray-200 px-[15px] gap-[5px] py-[5px]
         font-dmSans flex-shrink-0"
         >
             {/* <div className="flex flex-col truncate">
@@ -12,16 +13,22 @@ const AllPaymentsListItem = ({ result }) => {
                 <p className="w-[30px]">{serialNumber ?? "-"}</p>
             </div> */}
             <div className="flex flex-col truncate">
+                <p className={`${columnTitleStyle}`}>No</p>
+                <p className="w-[40px]">{serialNumber ?? "-"}</p>
+            </div>
+            <div className="flex flex-col truncate">
                 <p className={`${columnTitleStyle}`}>ID</p>
-                <p className="w-[40px]">{result.user_id ?? "-"}</p>
+                <p className="w-[40px]">{result.userId ?? "-"}</p>
             </div>
             <div className="flex flex-col truncate">
                 <p className={`${columnTitleStyle}`}>Name</p>
-                <p className="w-[120px]">{result.name ?? "-"}</p>
+                <p className="w-[120px]">{result.username ?? "-"}</p>
             </div>
             <div className="flex flex-col truncate">
                 <p className={`${columnTitleStyle}`}>Service Type</p>
-                <p className="w-[200px] truncate">{result.service ?? "-"}</p>
+                <p className="w-[200px] truncate">
+                    {result.serviceType ?? "-"}
+                </p>
             </div>
             <div className="flex flex-col truncate">
                 <p className={`${columnTitleStyle}`}>Currency</p>
@@ -33,11 +40,25 @@ const AllPaymentsListItem = ({ result }) => {
             </div>
             <div className="flex flex-col truncate">
                 <p className={`${columnTitleStyle}`}>Dates</p>
-                <p className="w-[250px] truncate">{result.dates ?? "-"}</p>
+                {/* <p className="w-[250px] truncate">{result.dates ?? "-"}</p> */}
+                <p className="w-[220px] overflow-x-auto scrollbar-hide">
+                    {Array.isArray(result.dates)
+                        ? result.dates
+                              .map(
+                                  (dateStr) =>
+                                      new Date(dateStr).toLocaleDateString(
+                                          "en-GB"
+                                      ) // "YYYY-MM-DD"
+                              )
+                              .join(", ")
+                        : result.dates ?? "-"}
+                </p>
             </div>
             <div className="flex flex-col truncate">
-                <p className={`${columnTitleStyle}`}>Payment Success</p>
-                <p className="w-[60px] truncate">{result.dates ?? "-"}</p>
+                <p className={`${columnTitleStyle}`}>Payment Status</p>
+                <p className="w-[70px] truncate">
+                    {result.isSuccessful ? "Success" : "Failure"}
+                </p>
             </div>
         </div>
     );

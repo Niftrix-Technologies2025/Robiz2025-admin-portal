@@ -49,7 +49,7 @@ const UserVerification = () => {
                 {isLoading ? (
                     <LoadingItem size={10} classname="" />
                 ) : pendingUsers.length > 0 ? (
-                    <div className="flex flex-col overflow-y-auto w-full h-full pr-[3px]">
+                    <div className="flex flex-col overflow-y-auto w-full h-full pr-[3px] mb-[20px] mt-[10px]">
                         {pendingUsers.map((user, index) => (
                             <UserVerificationListItem
                                 index={index}
