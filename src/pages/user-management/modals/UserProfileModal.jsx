@@ -19,21 +19,20 @@ const UserProfileModal = ({
     const [userDetail, setUserDetail] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     useEffect(() => {
-        try {
-            setIsLoading(true);
-            const getUserDetails = async () => {
+        setIsLoading(true);
+        const getUserDetails = async () => {
+            try {
                 const res = await fetchUserDetails(userId);
                 if (res.status === 200) {
                     setUserDetail(res.data);
-                    // console.log("user details", res.data);
+                    setIsLoading(false);
                 }
+            } catch (err) {
                 setIsLoading(false);
-            };
-            getUserDetails();
-        } catch (err) {
-            console.log(err);
-            setIsLoading(false);
-        }
+                console.log(err);
+            }
+        };
+        getUserDetails();
     }, [userId]);
     const suspendUserHandler = async () => {
         try {
@@ -83,6 +82,7 @@ const UserProfileModal = ({
                                     <img
                                         src={userDetail?.profile?.dp}
                                         className="size-[150px] rounded-[50%]"
+                                        loading="lazy"
                                     />
                                 ) : (
                                     <FaUserCircle className="size-[150px] text-gray-500" />

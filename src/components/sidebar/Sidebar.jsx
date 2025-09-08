@@ -40,7 +40,7 @@ const Sidebar = () => {
             />
             <SidebarItem
                 displayName="System Settings"
-                url="/action-log"
+                url="/system-settings"
                 icon={<RiListSettingsLine className="size-[18px]" />}
             />
         </div>

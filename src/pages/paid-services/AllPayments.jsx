@@ -46,6 +46,8 @@ const AllPayments = () => {
     }, [PAGE_SIZE, selectedCriteria, page]);
     useEffect(() => {
         setPage(1);
+        setTotal(1);
+        setResults([]);
     }, [selectedCriteria]);
     return (
         <div className="w-full h-full flex flex-col gap-[20px]">
@@ -55,7 +57,7 @@ const AllPayments = () => {
                     value={selectedCriteria}
                     onChange={setSelectedCriteria}
                     options={criteria}
-                    className={`w-[170px] max-sm:w-[110px] my-[2px] font-dmSans`}
+                    className={`w-[200px] max-sm:w-[110px] my-[2px] font-dmSans`}
                     classNamePrefix="react-select"
                     isSearchable={false}
                 />
@@ -75,14 +77,12 @@ const AllPayments = () => {
                 <div className="flex flex-col overflow-y-auto gap-[5px] pr-[10px] mb-[15px]">
                     {results.map((result, index) => (
                         <AllPaymentsListItem
-                            // key={result.userId}
                             key={index}
                             index={index}
                             result={result}
                             page={page}
                             pageSize={PAGE_SIZE}
                         />
-                        // <div key={index}>{result}</div>
                     ))}
                 </div>
             ) : (
