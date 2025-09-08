@@ -15,6 +15,10 @@ import UserNotifications from "./pages/user-management/UserNotifications";
 import AddUsers from "./pages/user-management/AddUsers";
 import PaidServicesLayout from "./pages/paid-services/layouts/PaidServicesLayout";
 import AllPayments from "./pages/paid-services/AllPayments";
+import ManagePlans from "./pages/paid-services/ManagePlans";
+import SystemSettingsLayout from "./pages/system-settings/layouts/SystemSettingsLayout";
+import SchemaManagement from "./pages/system-settings/SchemaManagement";
+import PolicyManagement from "./pages/system-settings/PolicyManagement";
 
 function App() {
     return (
@@ -64,9 +68,24 @@ function App() {
                             index
                             element={<Navigate to="all-payments" replace />}
                         />
+                        <Route path="all-payments" element={<AllPayments />} />
+                        <Route path="manage-plans" element={<ManagePlans />} />
+                    </Route>
+                    <Route
+                        path="/system-settings"
+                        element={<SystemSettingsLayout />}
+                    >
                         <Route
-                            path="all-payments"
-                            element={<AllPayments />}
+                            index
+                            element={<Navigate to="modify-schema" replace />}
+                        />
+                        <Route
+                            path="modify-schema"
+                            element={<SchemaManagement />}
+                        />
+                        <Route
+                            path="manage-policies"
+                            element={<PolicyManagement />}
                         />
                     </Route>
                 </Route>
