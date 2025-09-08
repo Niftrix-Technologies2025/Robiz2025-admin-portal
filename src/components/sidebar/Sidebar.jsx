@@ -1,8 +1,9 @@
 import SidebarItem from "./SidebarItem";
 import { MdOutlineSpaceDashboard } from "react-icons/md";
 import { FaUsers } from "react-icons/fa";
-import { GoLog } from "react-icons/go";
-// import { IoIosSettings } from "react-icons/io";
+// import { GoLog } from "react-icons/go";
+// import { MdOutlineRemoveModerator } from "react-icons/md";
+import { MdOutlineSecurity } from "react-icons/md";
 import { MdPaid } from "react-icons/md";
 import { RiListSettingsLine } from "react-icons/ri";
 import { robizLogo } from "../../assets/icons";
@@ -28,10 +29,15 @@ const Sidebar = () => {
                 url="/user-management"
                 icon={<FaUsers />}
             />
-            <SidebarItem
+            {/* <SidebarItem
                 displayName="Action Log"
                 url="/action-log"
                 icon={<GoLog />}
+            /> */}
+            <SidebarItem
+                displayName="Content Moderation"
+                url="/content-moderation"
+                icon={<MdOutlineSecurity />}
             />
             <SidebarItem
                 displayName="Paid Services"

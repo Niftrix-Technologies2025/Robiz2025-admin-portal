@@ -152,7 +152,7 @@ const SearchProfiles = () => {
             </div>
             <div
                 className="flex flex-col w-full h-[89%] bg-white rounded-[10px] border-[1px] 
-            border-gray-500 mt-[10px] p-[10px] overflow-y-auto gap-[10px] mb-[20px]"
+                border-gray-500 mt-[10px] p-[10px] overflow-y-auto gap-[10px] mb-[20px]"
             >
                 {isLoading ? (
                     <LoadingItem />

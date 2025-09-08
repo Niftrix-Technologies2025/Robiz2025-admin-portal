@@ -1,15 +1,6 @@
 import { AppConfig } from "../util/AppConfig";
 import axios from "axios";
 
-// export const fetchUnverifiedUsers = (payload) => {
-//     return axios.post(
-//         `${AppConfig.api_url}users/fetch-unverified-users`,
-//         payload,
-//         {
-//             withCredentials: true,
-//         }
-//     );
-// };
 export const fetchUnverifiedUsers = ({ page = 1, limit = 10 } = {}) => {
     return axios.post(
         `${AppConfig.api_url}users/fetch-unverified-users`,

@@ -10,7 +10,7 @@ const MainLayout = () => {
                 <PageHeader />
                 <div className="flex flex-row w-full h-full">
                     <Sidebar />
-                    <div className="pt-[48px] pl-[70px] w-full h-screen">
+                    <div className="pt-[42px] pl-[70px] w-full h-screen">
                         <Outlet />
                     </div>
                 </div>

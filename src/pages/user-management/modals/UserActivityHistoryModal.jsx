@@ -33,15 +33,18 @@ const UserActivityHistoryModal = ({ userId, isOpen, onRequestClose }) => {
             onRequestClose={onRequestClose}
             ariaHideApp={false}
         >
-            <div className="w-full h-full relative">
-                <CustomCloseButton ClickFn={onRequestClose} />
+            <div className="w-full h-full flex flex-col">
+                <div className="flex flex-row justify-between px-[5px]">
+                    <p className="font-dmSans text-[20px] font-medium">Activity History</p>
+                    <CustomCloseButton ClickFn={onRequestClose} />
+                </div>
+
                 {isLoading ? (
                     <LoadingItem size={10} />
                 ) : (
-                    <div className="flex flex-col w-full h-[90%] mt-[35px] px-[10px] gap-[10px] overflow-y-auto">
-                        <UserActivityHistorySection />
-                        <UserActivityHistorySection />
-                        <UserActivityHistorySection />
+                    <div className="flex flex-col w-full h-[90%] mt-[15px] px-[10px] gap-[10px] overflow-y-auto">
+                        <UserActivityHistorySection sectionTitle={"Referrals Sent/Received"}/>
+                        <UserActivityHistorySection sectionTitle={"Premium Services"}/>
                     </div>
                 )}
             </div>

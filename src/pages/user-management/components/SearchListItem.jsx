@@ -50,26 +50,26 @@ const SearchListItem = ({ user, onStatusChange }) => {
                     {user.status ?? "-"}
                 </p>
             </div>
-            {/* <ListItemButton
+            <ListItemButton
                 btnText={"Activity History"}
                 onClick={() => {
                     setIsActivityModalOpen(true);
                 }}
                 classname={""}
-            /> */}
+            />
             <ListItemButton
                 btnText={"View Profile"}
                 onClick={() => {
                     setIsProfileModalOpen(true);
                 }}
             />
-            {/* {isActivityModalOpen && (
+            {isActivityModalOpen && (
                 <UserActivityHistoryModal
                     userId={user.user_id}
                     isOpen={isActivityModalOpen}
                     onRequestClose={() => setIsActivityModalOpen(false)}
                 />
-            )} */}
+            )}
             {isProfileModalOpen && (
                 <UserProfileModal
                     userId={user.user_id}

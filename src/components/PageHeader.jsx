@@ -17,11 +17,11 @@ const PageHeader = () => {
     }, []);
     return (
         <div
-            className="fixed z-10 w-full h-[48px] flex flex-row items-center justify-between pl-[80px] pr-[10px] px-2 py-1 
+            className="fixed z-10 w-full h-[42px] flex flex-row items-center justify-between pl-[80px] pr-[10px] px-2 py-1 
         bg-headerBg text-textColor font-dmSans"
         >
             <div className="flex flex-row items-center">
-                <p>Robiz Admin</p>
+                <p className="font-bold tracking-widest text-center text-[14px]">ROBIZ ADMIN</p>
             </div>
 
             <div className="flex flex-row items-center justify-center gap-[10px]">

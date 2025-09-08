@@ -53,7 +53,7 @@ const AllPaymentsListItem = ({ index, result, page, pageSize }) => {
             <div className="flex flex-col truncate">
                 <p className={`${columnTitleStyle}`}>Payment Status</p>
                 <p
-                    className={`w-[70px] truncate ${
+                    className={`w-[70px] font-bold truncate ${
                         result.isSuccessful ? "text-green-500" : "text-red-500"
                     }`}
                 >

@@ -19,6 +19,9 @@ import ManagePlans from "./pages/paid-services/ManagePlans";
 import SystemSettingsLayout from "./pages/system-settings/layouts/SystemSettingsLayout";
 import SchemaManagement from "./pages/system-settings/SchemaManagement";
 import PolicyManagement from "./pages/system-settings/PolicyManagement";
+import ContentModerationLayout from "./pages/content-moderation/layouts/ContentModerationLayout";
+import ManagePosts from "./pages/content-moderation/ManagePosts";
+import AuditLog from "./pages/content-moderation/AuditLog";
 
 function App() {
     return (
@@ -70,6 +73,17 @@ function App() {
                         />
                         <Route path="all-payments" element={<AllPayments />} />
                         <Route path="manage-plans" element={<ManagePlans />} />
+                    </Route>
+                    <Route
+                        path="/content-moderation"
+                        element={<ContentModerationLayout />}
+                    >
+                        <Route
+                            index
+                            element={<Navigate to="manage-posts" replace />}
+                        />
+                        <Route path="manage-posts" element={<ManagePosts />} />
+                        <Route path="audit-log" element={<AuditLog />} />
                     </Route>
                     <Route
                         path="/system-settings"
