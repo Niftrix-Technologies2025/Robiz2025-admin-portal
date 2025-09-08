@@ -49,6 +49,14 @@ export const fetchUserDetails = (userId) => {
     });
 };
 
+export const fetchUserActivityHistory = (userId) => {
+    const formData = new FormData();
+    formData.append("userId", userId);
+    return axios.post(`${AppConfig.api_url}users/activity-history`, formData, {
+        withCredentials: true,
+    });
+};
+
 export const suspendUser = (userId) => {
     return axios.post(
         `${AppConfig.api_url}users/suspend-user`,
