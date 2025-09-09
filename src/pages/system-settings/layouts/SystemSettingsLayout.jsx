@@ -9,7 +9,7 @@ const tabs = [
 const SystemSettingsLayout = () => {
     return (
         <div className="flex flex-col w-full h-full">
-            <TabbedLayout items={tabs}/>
+            <TabbedLayout items={tabs} />
             <div className="pt-[35px] bg-outletBg w-full h-full">
                 <Outlet />
             </div>

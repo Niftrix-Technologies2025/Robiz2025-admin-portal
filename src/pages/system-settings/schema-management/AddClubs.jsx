@@ -1,16 +1,27 @@
 import { useEffect, useState } from "react";
 import ReusableButton from "../../../components/ReusableButton";
-import { addClub } from "../../../services/settings.service";
 import CsvFileSelector from "../../../components/CsvFileSelector";
 import SchemaInputField from "../components/SchemaInputField";
+import { useAddClubStore } from "../../../store/settings.store";
 
 const AddClubs = () => {
-    const [districtId, setDistrictId] = useState("");
-    const [clubName, setClubName] = useState("");
-    const [clubId, setClubId] = useState("");
-    const [zoneName, setZoneName] = useState("");
-    const [selectedFile, setSelectedFile] = useState(null);
-    const [loading, setLoading] = useState(false);
+    const {
+        districtId,
+        clubName,
+        clubId,
+        zoneName,
+        selectedFile,
+        setDistrictId,
+        setClubName,
+        setClubId,
+        setZoneName,
+        setSelectedFile,
+        loading,
+        error,
+        success,
+        addClub,
+        reset,
+    } = useAddClubStore();
     const isFilled = districtId || clubName || clubId || zoneName;
     const isCompletelyFilled = districtId && clubName && clubId && zoneName;
     useEffect(() => {
@@ -28,25 +39,9 @@ const AddClubs = () => {
     }, [selectedFile]);
     const handleAddClub = async () => {
         try {
-            setLoading(true);
-            const res = await addClub(
-                districtId,
-                clubName,
-                clubId,
-                zoneName,
-                selectedFile
-            );
-            if (res.status === 200) {
-                setDistrictId("");
-                setClubName("");
-                setClubId("");
-                setZoneName("");
-                setSelectedFile(null);
-                setLoading(false);
-            }
+            const res = await addClub();
         } catch (err) {
             console.log(err);
-            setLoading(false);
         }
     };
     return (
@@ -104,6 +99,7 @@ const AddClubs = () => {
                     btnActive={
                         isCompletelyFilled || selectedFile ? false : true
                     }
+                    loading={loading}
                 />
             </div>
         </div>
