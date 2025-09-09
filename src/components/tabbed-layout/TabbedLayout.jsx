@@ -12,7 +12,7 @@ const TabbedLayout = ({ items,className }) => {
                 <TabbedLayoutItem
                     key={index}
                     item={item}
-                    isActive={location.pathname === item.url}
+                    isActive={location.pathname === item.url||location.pathname.startsWith(item.url + '/')}
                 />
             ))}
         </div>
