@@ -1,5 +1,8 @@
 import { create } from "zustand";
-import { sendNotification as sendNotificationApi } from "../services/user.service";
+import {
+    sendNotification as sendNotificationApi,
+    addUsersFromCSV,
+} from "../services/user.service";
 
 export const useNotificationStore = create((set, get) => ({
     isLoading: false,
@@ -23,7 +26,7 @@ export const useNotificationStore = create((set, get) => ({
             );
             if (res.status === 200) {
                 set({ isLoading: false, error: null, isError: false });
-                get().reset();
+                get().resetNotification();
             }
             return res;
         } catch (err) {
@@ -31,7 +34,7 @@ export const useNotificationStore = create((set, get) => ({
             throw err;
         }
     },
-    reset: () =>
+    resetNotification: () =>
         set({
             isLoading: false,
             message: "",
@@ -40,4 +43,26 @@ export const useNotificationStore = create((set, get) => ({
             error: null,
             isError: false,
         }),
+}));
+
+export const useUploadStore = create((set) => ({
+    isUploading: false,
+    result: null,
+    error: null,
+    isError: false,
+    startUpload: async (file) => {
+        set({ isUploading: true, error: null, result: null });
+        try {
+            const res = await addUsersFromCSV(file);
+            set({ result: res.data });
+            return res;
+        } catch (err) {
+            set({ error: err, isError: true });
+            throw err;
+        } finally {
+            set({ isUploading: false });
+        }
+    },
+    resetUpload: () =>
+        set({ isUploading: false, result: null, error: null, isError: false }),
 }));
