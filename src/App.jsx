@@ -17,8 +17,10 @@ import PaidServicesLayout from "./pages/paid-services/layouts/PaidServicesLayout
 import AllPayments from "./pages/paid-services/AllPayments";
 import ManagePlans from "./pages/paid-services/ManagePlans";
 import SystemSettingsLayout from "./pages/system-settings/layouts/SystemSettingsLayout";
-import SchemaManagement from "./pages/system-settings/SchemaManagement";
-import PolicyManagement from "./pages/system-settings/PolicyManagement";
+import SchemaManagement from "./pages/system-settings/layouts/SchemaManagement";
+import AddClubs from "./pages/system-settings/schema-management/AddClubs";
+import AddIndustry from "./pages/system-settings/schema-management/AddIndustry";
+import PolicyManagement from "./pages/system-settings/layouts/PolicyManagement";
 import ContentModerationLayout from "./pages/content-moderation/layouts/ContentModerationLayout";
 import ManagePosts from "./pages/content-moderation/ManagePosts";
 import AuditLog from "./pages/content-moderation/AuditLog";
@@ -96,7 +98,18 @@ function App() {
                         <Route
                             path="modify-schema"
                             element={<SchemaManagement />}
-                        />
+                        >
+                            <Route
+                                index
+                                element={<Navigate to="add-clubs" replace />}
+                            />
+                            <Route path="add-clubs" element={<AddClubs />} />
+                            <Route
+                                path="add-industry"
+                                element={<AddIndustry />}
+                            />
+                        </Route>
+
                         <Route
                             path="manage-policies"
                             element={<PolicyManagement />}

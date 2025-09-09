@@ -15,7 +15,7 @@ const PaidServicesLayout = () => {
     return (
         <div className="flex flex-col w-full h-full">
             <TabbedLayout items={tabs} />
-            <div className="pt-[60px] px-[20px] bg-outletBg w-full h-full">
+            <div className="pt-[50px] px-[20px] bg-outletBg w-full h-full">
                 <Outlet />
             </div>
         </div>

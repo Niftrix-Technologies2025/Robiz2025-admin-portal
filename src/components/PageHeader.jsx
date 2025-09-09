@@ -21,7 +21,7 @@ const PageHeader = () => {
         bg-headerBg text-textColor font-dmSans"
         >
             <div className="flex flex-row items-center">
-                <p className="font-bold tracking-widest text-center text-[14px]">ROBIZ ADMIN</p>
+                <p className="font-bold tracking-widest text-center text-[16px]">ROBIZ ADMIN</p>
             </div>
 
             <div className="flex flex-row items-center justify-center gap-[10px]">

@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import ReusableButton from "../../components/ReusableButton";
 import UserNotificationCard from "./components/UserNotificationCard";
-import { useNotificationStore } from "../../store/user.notification.store";
+import { useNotificationStore } from "../../store/user.store";
 import LoadingMessage from "../../components/LoadingMessage";
 import ErrorMessage from "../../components/ErrorMessage";
 const recipientTypes = [
@@ -47,7 +47,7 @@ const UserNotifications = () => {
         reset();
     };
     return (
-        <div className="w-full h-full flex flex-col gap-[10px] overflow-y-auto pr-[10px] max-w-[1024px]">
+        <div className="w-full h-full flex flex-col gap-[10px] overflow-y-auto pr-[10px] max-w-[800px]">
             <UserNotificationCard sectionTitle={"Compose Email"}>
                 <textarea
                     placeholder="Type your message here..."
@@ -142,12 +142,7 @@ const UserNotifications = () => {
                 <ReusableButton
                     btnText={"Send message"}
                     classname={`ml-[5px] w-[200px] h-[40px] border-none !rounded-[5px] !bg-red-500 
-                    disabled:!bg-gray-400 text-white 
-                    ${
-                        !message
-                            ? `!text-gray-200 font-light cursor-default`
-                            : ""
-                    }`}
+                    disabled:!bg-red-400 disabled:!text-gray-200 disabled:font-light text-white`}
                     btnActive={!message}
                     onClick={sendNotificationHandler}
                 />

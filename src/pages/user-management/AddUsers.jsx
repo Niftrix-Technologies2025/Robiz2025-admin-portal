@@ -4,7 +4,7 @@ import ReusableButton from "../../components/ReusableButton";
 import DataTemplateRow from "./components/DataTemplateRow";
 import { IoMdDownload } from "react-icons/io";
 import { IoIosCheckmarkCircle } from "react-icons/io";
-import { useUploadStore } from "../../store/user.upload.store";
+import { useUploadStore } from "../../store/user.store";
 import LoadingMessage from "../../components/LoadingMessage";
 import ErrorMessage from "../../components/ErrorMessage";
 
@@ -136,7 +136,7 @@ const AddUsers = () => {
                                     btnText={"Select File"}
                                     title={"Select CSV File"}
                                     classname={`w-[150px] h-[40px] !text-[16px] !rounded-[5px] 
-                                    !border-0 !bg-red-500 !text-white`}
+                                    !border-0 !bg-gray-400 !text-textColor`}
                                 />
                             </div>
                         )}
@@ -146,7 +146,7 @@ const AddUsers = () => {
             <div className="h-[20px]" />
             <ReusableButton
                 btnText={"Add users from the selected file"}
-                classname={"w-[250px] h-[50px]"}
+                classname={"w-[250px] h-[50px] font-bold"}
                 btnActive={!selectedFile || isUploading || isError}
                 onClick={handleAddUsers}
             />
