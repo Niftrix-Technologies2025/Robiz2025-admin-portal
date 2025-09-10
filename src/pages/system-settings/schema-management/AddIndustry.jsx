@@ -1,11 +1,42 @@
-import { useState } from "react";
 import SchemaInputField from "../components/SchemaInputField";
-import CsvFileSelector from "../../../components/CsvFileSelector";
+import FileSelector from "../../../components/FileSelector";
 import ReusableButton from "../../../components/ReusableButton";
+import { useAddIndustryStore } from "../../../store/settings.store";
+import { useEffect } from "react";
 const AddIndustry = () => {
-    const [industry, setIndustry] = useState("");
-    const [classification, setClassification] = useState("");
-    const [selectedFile, setSelectedFile] = useState(null);
+    const {
+        industry,
+        classification,
+        selectedFile,
+        setIndustry,
+        setClassification,
+        setSelectedFile,
+        loading,
+        error,
+        success,
+        addIndustry,
+        reset,
+    } = useAddIndustryStore();
+    const isFilled = industry || classification;
+    const isCompletelyFilled = industry && classification;
+    useEffect(() => {
+        if (isFilled) {
+            setSelectedFile(null);
+        }
+    }, [isFilled]);
+    useEffect(() => {
+        if (selectedFile) {
+            setIndustry("");
+            setClassification("");
+        }
+    }, [selectedFile, setIndustry, setClassification]);
+    const handleAddIndustry = async () => {
+        try {
+            await addIndustry();
+        } catch (err) {
+            console.log(err);
+        }
+    };
     return (
         <div className="w-full max-w-[800px] h-full overflow-y-auto flex flex-col gap-[15px] pr-[10px] pb-[50px]">
             <div className="flex flex-col bg-white p-4 rounded-[10px]">
@@ -32,7 +63,7 @@ const AddIndustry = () => {
                 <p className="pl-[5px] font-dmSans w-full text-left text-[18px] mb-[10px]">
                     Add from csv
                 </p>
-                <CsvFileSelector
+                <FileSelector
                     selectedFile={selectedFile}
                     onFileSelect={setSelectedFile}
                     className={"p-[20px]"}
@@ -43,7 +74,11 @@ const AddIndustry = () => {
                     btnText={"Add Industry"}
                     classname={`!border-0 !rounded-[5px] w-[70%] !py-[10px] !bg-red-500 
                     disabled:!bg-red-400 disabled:!text-gray-200 disabled:font-light !text-white`}
-                    onClick={() => {}}
+                    onClick={handleAddIndustry}
+                    btnActive={
+                        isCompletelyFilled || selectedFile ? false : true
+                    }
+                    isLoading={loading}
                 />
             </div>
         </div>

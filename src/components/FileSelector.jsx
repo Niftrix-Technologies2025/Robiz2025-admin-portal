@@ -1,16 +1,17 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { IoDocumentText, IoDocumentTextOutline } from "react-icons/io5";
 import { IoIosCheckmarkCircle } from "react-icons/io";
+import { RiDeleteBin2Fill } from "react-icons/ri";
 import ReusableButton from "./ReusableButton";
 
-const CsvFileSelector = ({
+const FileSelector = ({
     selectedFile,
     onFileSelect,
     buttonText = "Select File",
     changeButtonText = "Change File",
     accept = ".csv,text/csv",
     disabled = false,
-    className
+    className,
 }) => {
     const fileInputRef = useRef(null);
 
@@ -19,15 +20,23 @@ const CsvFileSelector = ({
     };
 
     const handleFileChange = (e) => {
-        if (onFileSelect) onFileSelect(e.target.files[0]);
+        const file = e.target.files?.[0] || null;
+        if (file && onFileSelect) onFileSelect(file);
+        e.target.value = "";
     };
+    useEffect(() => {
+        if (!selectedFile && fileInputRef.current) {
+            fileInputRef.current.value = "";
+        }
+    }, [selectedFile]);
 
     return (
         <div
             className={`w-full h-full border-2 border-dashed ${
                 selectedFile ? "border-black" : "border-gray-400"
-            } rounded-[5px] flex flex-col items-center justify-center gap-[20px] cursor-pointer bg-white ${className}`}
-            onClick={handleButtonClick}
+            } rounded-[5px] flex flex-col items-center justify-center gap-[20px] ${
+                disabled ? "!border-gray-300" : ""
+            } bg-white ${className}`}
         >
             <input
                 type="file"
@@ -38,7 +47,13 @@ const CsvFileSelector = ({
                 disabled={disabled}
             />
             {selectedFile ? (
-                <div className="flex flex-col items-center justify-center gap-[10px]">
+                <div className="relative flex flex-col items-center justify-center gap-[10px] w-full h-full">
+                    <RiDeleteBin2Fill
+                        className="absolute top-1 right-1 z-10 size-[24px] 
+                        text-gray-500 cursor-pointer"
+                        onClick={() => {}}
+                        title="Remove file"
+                    />
                     <div className="relative">
                         <IoDocumentText className="size-[54px]" />
                         <IoIosCheckmarkCircle className="text-green-500 size-[24px] absolute top-7/11 right-0.5" />
@@ -49,21 +64,25 @@ const CsvFileSelector = ({
                     <ReusableButton
                         btnText={changeButtonText}
                         title={"Select CSV File"}
-                        classname={`w-[150px] h-[40px] !text-[16px] !rounded-[5px] !border-0 !bg-red-500 !text-white`}
-                        // onClick={handleButtonClick}
-                        disabled={disabled}
+                        classname={`w-[150px] h-[40px] !text-[16px] !rounded-[5px] !border-0 !bg-gray-600 !text-white`}
+                        btnActive={disabled}
+                        onClick={handleButtonClick}
                     />
                 </div>
             ) : (
-                <div className="flex flex-col items-center justify-center gap-[10px]">
-                    <IoDocumentTextOutline className="size-[52px] text-gray-700" />
-                    <p className="font-bold text-gray-700">Upload .csv file</p>
+                <div
+                    className={`flex flex-col items-center justify-center gap-[10px] ${
+                        disabled ? "!text-gray-200" : "text-gray-700"
+                    }`}
+                >
+                    <IoDocumentTextOutline className={`size-[52px]`} />
+                    <p className="font-bold">Upload .csv file</p>
                     <ReusableButton
                         btnText={buttonText}
                         title={"Select CSV File"}
                         classname={`w-[150px] h-[40px] !text-[16px] !rounded-[5px] !border-0 !bg-gray-400 !text-textColor`}
-                        // onClick={handleButtonClick}
-                        disabled={disabled}
+                        btnActive={disabled}
+                        onClick={handleButtonClick}
                     />
                 </div>
             )}
@@ -71,4 +90,4 @@ const CsvFileSelector = ({
     );
 };
 
-export default CsvFileSelector;
+export default FileSelector;

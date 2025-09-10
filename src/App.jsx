@@ -22,8 +22,9 @@ import AddClubs from "./pages/system-settings/schema-management/AddClubs";
 import AddIndustry from "./pages/system-settings/schema-management/AddIndustry";
 import PolicyManagement from "./pages/system-settings/layouts/PolicyManagement";
 import ContentModerationLayout from "./pages/content-moderation/layouts/ContentModerationLayout";
-import ManagePosts from "./pages/content-moderation/ManagePosts";
 import AuditLog from "./pages/content-moderation/AuditLog";
+import ManageContent from "./pages/content-moderation/layouts/ManageContent";
+import ViewBanners from "./pages/content-moderation/ViewBanners";
 
 function App() {
     return (
@@ -82,9 +83,21 @@ function App() {
                     >
                         <Route
                             index
-                            element={<Navigate to="manage-posts" replace />}
+                            element={<Navigate to="manage-content" replace />}
                         />
-                        <Route path="manage-posts" element={<ManagePosts />} />
+                        <Route
+                            path="manage-content"
+                            element={<ManageContent />}
+                        >
+                            <Route
+                                index
+                                element={<Navigate to="view-banners" replace />}
+                            />
+                            <Route
+                                path="view-banners"
+                                element={<ViewBanners />}
+                            />
+                        </Route>
                         <Route path="audit-log" element={<AuditLog />} />
                     </Route>
                     <Route

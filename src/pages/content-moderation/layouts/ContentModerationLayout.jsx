@@ -3,8 +3,8 @@ import { Outlet } from "react-router-dom";
 
 const tabs = [
     {
-        label: "Manage Uploaded Content",
-        url: "/content-moderation/manage-posts",
+        label: "Manage Content",
+        url: "/content-moderation/manage-content",
     },
     { label: "View Audit Log", url: "/content-moderation/audit-log" },
 ];
@@ -12,7 +12,7 @@ const ContentModerationLayout = () => {
     return (
         <div className="flex flex-col w-full h-full">
             <TabbedLayout items={tabs} />
-            <div className="pt-[60px] px-[20px] bg-outletBg w-full h-full">
+            <div className="pt-[35px] bg-outletBg w-full h-full">
                 <Outlet />
             </div>
         </div>

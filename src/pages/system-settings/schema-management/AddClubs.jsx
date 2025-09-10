@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
 import ReusableButton from "../../../components/ReusableButton";
-import CsvFileSelector from "../../../components/CsvFileSelector";
+import FileSelector from "../../../components/FileSelector";
 import SchemaInputField from "../components/SchemaInputField";
 import { useAddClubStore } from "../../../store/settings.store";
 
 const AddClubs = () => {
     const {
         districtId,
-        clubName,
         clubId,
+        clubName,
         zoneName,
         selectedFile,
         setDistrictId,
-        setClubName,
         setClubId,
+        setClubName,
         setZoneName,
         setSelectedFile,
         loading,
@@ -39,7 +39,7 @@ const AddClubs = () => {
     }, [selectedFile]);
     const handleAddClub = async () => {
         try {
-            const res = await addClub();
+            await addClub();
         } catch (err) {
             console.log(err);
         }
@@ -56,6 +56,7 @@ const AddClubs = () => {
                     value={districtId}
                     setValue={setDistrictId}
                     placeholder={"District id"}
+                    isLoading={loading}
                 />
                 <SchemaInputField
                     inputType={"text"}
@@ -63,6 +64,7 @@ const AddClubs = () => {
                     value={clubName}
                     setValue={setClubName}
                     placeholder={"Club name"}
+                    isLoading={loading}
                 />
                 <SchemaInputField
                     inputType={"number"}
@@ -70,6 +72,7 @@ const AddClubs = () => {
                     value={clubId}
                     setValue={setClubId}
                     placeholder={"Club id"}
+                    isLoading={loading}
                 />
                 <SchemaInputField
                     inputType={"text"}
@@ -77,6 +80,7 @@ const AddClubs = () => {
                     value={zoneName}
                     setValue={setZoneName}
                     placeholder={"Zone name"}
+                    isLoading={loading}
                 />
             </div>
             <p className="font-dmSans w-full text-center font-bold">OR</p>
@@ -84,10 +88,11 @@ const AddClubs = () => {
                 <p className="pl-[5px] font-dmSans w-full text-left text-[18px] mb-[10px]">
                     Add from csv
                 </p>
-                <CsvFileSelector
+                <FileSelector
                     selectedFile={selectedFile}
                     onFileSelect={setSelectedFile}
                     className={"p-[20px]"}
+                    disabled={loading}
                 />
             </div>
             <div className="flex justify-center py-[10px]">
@@ -99,7 +104,7 @@ const AddClubs = () => {
                     btnActive={
                         isCompletelyFilled || selectedFile ? false : true
                     }
-                    loading={loading}
+                    isLoading={loading}
                 />
             </div>
         </div>
