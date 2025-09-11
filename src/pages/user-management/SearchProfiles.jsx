@@ -12,7 +12,7 @@ import PaginationNavbar from "../../components/PaginationNavbar";
 import { usePagination } from "../../hooks/usePagination";
 import { useLoading } from "../../hooks/useLoading";
 
-const PAGE_SIZE = 100; //100 results per page
+const PAGE_SIZE = 50; //100 results per page
 
 const searchAttributes = [
     { value: "email", label: "Email ID" },

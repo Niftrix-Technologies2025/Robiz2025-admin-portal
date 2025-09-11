@@ -3,7 +3,7 @@ import { useLoading } from "../../../hooks/useLoading";
 import LoadingItem from "../../../components/LoadingItem";
 import { useEffect, useState } from "react";
 import { fetchUserActivityHistory } from "../../../services/user.service";
-import CustomCloseButton from "../../../components/CustomCloseButton";
+// import CustomCloseButton from "../../../components/CustomCloseButton";
 import Select from "react-select";
 import UserActivityHistorySection from "../components/UserActivityHistorySection";
 import { IoClose } from "react-icons/io5";
@@ -36,14 +36,14 @@ const UserActivityHistoryModal = ({ userId, isOpen, onRequestClose }) => {
     return (
         <Modal
             isOpen={isOpen}
-            className={`w-[1318.09px] h-[560.6px] flex flex-col items-center justify-center 
-                rounded-[20px] bg-neumorphicBg p-[10px]`}
+            className={`w-full h-full max-w-[1318.09px] max-h-[560.6px] flex flex-col items-center justify-center 
+                rounded-[20px] bg-neumorphicBg`}
             overlayClassName="modal-overlay"
             onRequestClose={onRequestClose}
             ariaHideApp={false}
         >
             <div className="w-full h-full flex flex-col">
-                <div className="flex flex-row justify-between px-[5px]">
+                <div className="flex flex-row items-center justify-between rounded-t-[20px] px-[45px] pt-[22px] pb-[12px] bg-btnGradient4">
                     <div className="flex flex-row gap-[16.44px] items-center">
                         <p className="font-dmSans text-[25px] font-semibold">
                             Activity History
@@ -57,20 +57,24 @@ const UserActivityHistoryModal = ({ userId, isOpen, onRequestClose }) => {
                             isSearchable={false}
                         />
                     </div>
-                    <IoClose className="size-[24px] cursor-pointer" />
+                    <IoClose
+                        className="size-[24px] cursor-pointer"
+                        onClick={onRequestClose}
+                    />
                 </div>
 
                 {isLoading ? (
                     <LoadingItem size={10} />
                 ) : (
-                    <div className="flex flex-col w-full h-[90%] mt-[15px] px-[10px] gap-[10px] overflow-y-auto">
-                        <UserActivityHistorySection
-                            sectionTitle={"Referrals Sent/Received"}
-                        />
-                        <UserActivityHistorySection
-                            sectionTitle={"Premium Services"}
-                        />
-                    </div>
+                    // <div className="flex flex-col w-full h-[90%] mt-[15px] px-[10px] gap-[10px] overflow-y-auto">
+                    //     <UserActivityHistorySection
+                    //         sectionTitle={"Referrals Sent/Received"}
+                    //     />
+                    //     <UserActivityHistorySection
+                    //         sectionTitle={"Premium Services"}
+                    //     />
+                    // </div>
+                    <div></div>
                 )}
             </div>
         </Modal>
