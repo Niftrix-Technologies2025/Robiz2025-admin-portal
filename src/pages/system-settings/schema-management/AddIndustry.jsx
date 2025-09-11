@@ -3,6 +3,11 @@ import FileSelector from "../../../components/FileSelector";
 import ReusableButton from "../../../components/ReusableButton";
 import { useAddIndustryStore } from "../../../store/settings.store";
 import { useEffect } from "react";
+
+const industrySampleData = [
+    { label: "INDUSTRY", value: "Managed IT Services" },
+    { label: "CLASSIFICATION", value: "IT Services & IT Consulting" },
+];
 const AddIndustry = () => {
     const {
         industry,
@@ -64,6 +69,7 @@ const AddIndustry = () => {
                     Add from csv
                 </p>
                 <FileSelector
+                    templateData={industrySampleData}
                     selectedFile={selectedFile}
                     onFileSelect={setSelectedFile}
                     className={"p-[20px]"}

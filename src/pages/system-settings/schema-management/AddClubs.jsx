@@ -4,6 +4,13 @@ import FileSelector from "../../../components/FileSelector";
 import SchemaInputField from "../components/SchemaInputField";
 import { useAddClubStore } from "../../../store/settings.store";
 
+const clubSampleData = [
+    { label: "DISTRICT ID", value: "3192" },
+    { label: "CLUB NAME", value: "Orion gateway" },
+    { label: "CLUB ID", value: "4188" },
+    { label: "ZONE NAME", value: "Bangalore" },
+];
+
 const AddClubs = () => {
     const {
         districtId,
@@ -89,6 +96,7 @@ const AddClubs = () => {
                     Add from csv
                 </p>
                 <FileSelector
+                templateData={clubSampleData}
                     selectedFile={selectedFile}
                     onFileSelect={setSelectedFile}
                     className={"p-[20px]"}
