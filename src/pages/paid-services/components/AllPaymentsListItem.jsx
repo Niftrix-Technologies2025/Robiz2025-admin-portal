@@ -36,15 +36,11 @@ const AllPaymentsListItem = ({ index, result, page, pageSize }) => {
             </div>
             <div className="flex flex-col truncate">
                 <p className={`${columnTitleStyle}`}>Dates</p>
-                {/* <p className="w-[250px] truncate">{result.dates ?? "-"}</p> */}
                 <p className="w-[250px] overflow-x-auto scrollbar-hide">
                     {Array.isArray(result.dates)
                         ? result.dates
-                              .map(
-                                  (dateStr) =>
-                                      new Date(dateStr).toLocaleDateString(
-                                          "en-GB"
-                                      ) // "YYYY-MM-DD"
+                              .map((dateStr) =>
+                                  new Date(dateStr).toLocaleDateString("en-GB")
                               )
                               .join(", ")
                         : result.dates ?? "-"}

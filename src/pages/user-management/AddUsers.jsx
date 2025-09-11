@@ -1,7 +1,7 @@
 import { IoDocumentText, IoDocumentTextOutline } from "react-icons/io5";
 import { useRef, useState } from "react";
 import ReusableButton from "../../components/ReusableButton";
-import DataTemplateRow from "./components/DataTemplateRow";
+import DataTemplateRow from "../../components/DataTemplateRow";
 import { IoMdDownload } from "react-icons/io";
 import { IoIosCheckmarkCircle } from "react-icons/io";
 import { useUploadStore } from "../../store/user.store";
