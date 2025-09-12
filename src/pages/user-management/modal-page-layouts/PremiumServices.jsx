@@ -1,4 +1,8 @@
 import TabbedIndexLayout from "../../../components/tabbed-index-layout/TabbedIndexLayout";
+import PremiumBannerActivity from "../components/modal-pages/PremiumBannerActivity";
+import TrendingBannerActivity from "../components/modal-pages/TrendingBannerActivity";
+import FeaturedProfileActivity from "../components/modal-pages/FeaturedProfileActivity";
+import SearchPreferenceActivity from "../components/modal-pages/SearchPreferenceActivity";
 import { useState } from "react";
 const tabs = [
     { label: "Premium Banner", index: 0 },
@@ -7,7 +11,7 @@ const tabs = [
     { label: "Search Preference", index: 3 },
 ];
 
-const PremiumServices = () => {
+const PremiumServices = ({ userId }) => {
     const [activeTab, setActiveTab] = useState(0);
     return (
         <div className="flex flex-col">
@@ -16,6 +20,17 @@ const PremiumServices = () => {
                 activeIndex={activeTab}
                 onChange={setActiveTab}
             />
+            {activeTab === 0 ? (
+                <PremiumBannerActivity userId={userId} />
+            ) : activeTab === 1 ? (
+                <TrendingBannerActivity userId={userId} />
+            ) : activeTab === 2 ? (
+                <FeaturedProfileActivity userId={userId} />
+            ) : activeTab === 3 ? (
+                <SearchPreferenceActivity userId={userId} />
+            ) : (
+                <div>Invalid Index</div>
+            )}
         </div>
     );
 };

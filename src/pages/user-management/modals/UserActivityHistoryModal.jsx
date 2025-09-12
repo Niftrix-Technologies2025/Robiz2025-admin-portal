@@ -1,11 +1,6 @@
 import Modal from "react-modal";
-import { useLoading } from "../../../hooks/useLoading";
-import LoadingItem from "../../../components/LoadingItem";
-import { useEffect, useState } from "react";
-import { fetchUserActivityHistory } from "../../../services/user.service";
-// import CustomCloseButton from "../../../components/CustomCloseButton";
+import { useState } from "react";
 import Select from "react-select";
-// import UserActivityHistorySection from "../components/UserActivityHistorySection";
 import { IoClose } from "react-icons/io5";
 import PremiumServices from "../modal-page-layouts/PremiumServices";
 import ReferralHistory from "../modal-page-layouts/ReferralHistory";
@@ -14,32 +9,14 @@ const dropDownValues = [
     { value: "referral", label: "Referrals" },
 ];
 const UserActivityHistoryModal = ({ userId, isOpen, onRequestClose }) => {
-    const { isLoading, setIsLoading } = useLoading();
     const [selectedAttribute, setSelectedAttribute] = useState(
         dropDownValues[0]
     );
-    useEffect(() => {
-        const fetchActivityHistory = async () => {
-            try {
-                setIsLoading(true);
-                const res = await fetchUserActivityHistory(userId);
-                if (res.status === 200) {
-                    // Handle the fetched activity history data
-                    console.log("User Activity History:", res.data);
-                    setIsLoading(false);
-                }
-            } catch (err) {
-                console.log(err);
-                setIsLoading(false);
-            }
-        };
-        fetchActivityHistory();
-    }, [userId]);
     return (
         <Modal
             isOpen={isOpen}
             className={`w-full h-full max-w-[1318.09px] max-h-[560.6px] flex flex-col items-center justify-center 
-                rounded-[20px] bg-neumorphicBg`}
+                rounded-[20px] bg-white`}
             overlayClassName="modal-overlay"
             onRequestClose={onRequestClose}
             ariaHideApp={false}
@@ -54,7 +31,7 @@ const UserActivityHistoryModal = ({ userId, isOpen, onRequestClose }) => {
                             value={selectedAttribute}
                             onChange={setSelectedAttribute}
                             options={dropDownValues}
-                            className={`w-[218px] max-sm:w-[110px] my-[2px] font-dmSans`}
+                            className={`w-[218px] max-sm:w-[110px] my-[2px] font-dmSans bg-transparent`}
                             classNamePrefix="react-select"
                             isSearchable={false}
                         />
@@ -64,13 +41,10 @@ const UserActivityHistoryModal = ({ userId, isOpen, onRequestClose }) => {
                         onClick={onRequestClose}
                     />
                 </div>
-
-                {isLoading ? (
-                    <LoadingItem size={10} />
-                ) : selectedAttribute.value === "premium" ? (
-                    <PremiumServices />
+                {selectedAttribute.value === "premium" ? (
+                    <PremiumServices userId={userId} />
                 ) : (
-                    <ReferralHistory />
+                    <ReferralHistory userId={userId} />
                 )}
             </div>
         </Modal>

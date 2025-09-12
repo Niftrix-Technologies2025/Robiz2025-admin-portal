@@ -82,7 +82,7 @@ const BannerListItem = ({ index, banner, page, pageSize }) => {
                               // : "w-[76px] h-[40px]"
                               "w-[20px] h-[32px]"
                             : "w-[38px] h-[20px]"
-                    } cursor-pointer`}
+                    } cursor-pointer border-[1.5px] rounded-[5px] border-gray-300`}
                     loading="lazy"
                 />
             </div>

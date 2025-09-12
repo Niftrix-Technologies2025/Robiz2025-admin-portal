@@ -40,12 +40,89 @@ export const fetchUserDetails = (userId) => {
     });
 };
 
-export const fetchUserActivityHistory = (userId) => {
+export const fetchPremiumBannerActivity = (userId, page = 1, limit = 10) => {
     const formData = new FormData();
     formData.append("userId", userId);
-    return axios.post(`${AppConfig.api_url}users/activity-history`, formData, {
-        withCredentials: true,
-    });
+    formData.append("page", page);
+    formData.append("limit", limit);
+    return axios.post(
+        `${AppConfig.api_url}users/premium-banner-activity`,
+        formData,
+        {
+            withCredentials: true,
+        }
+    );
+};
+export const fetchTrendingBannerActivity = (userId, page = 1, limit = 10) => {
+    const formData = new FormData();
+    formData.append("userId", userId);
+    formData.append("page", page);
+    formData.append("limit", limit);
+    return axios.post(
+        `${AppConfig.api_url}users/trending-banner-activity`,
+        formData,
+        {
+            withCredentials: true,
+        }
+    );
+};
+export const fetchFeaturedProfileActivity = (userId, page = 1, limit = 10) => {
+    const formData = new FormData();
+    formData.append("userId", userId);
+    formData.append("page", page);
+    formData.append("limit", limit);
+    return axios.post(
+        `${AppConfig.api_url}users/featured-profile-activity`,
+        formData,
+        {
+            withCredentials: true,
+        }
+    );
+};
+export const fetchSearchPreferenceActivity = (userId, page = 1, limit = 10) => {
+    const formData = new FormData();
+    formData.append("userId", userId);
+    formData.append("page", page);
+    formData.append("limit", limit);
+    return axios.post(
+        `${AppConfig.api_url}users/search-preference-activity`,
+        formData,
+        {
+            withCredentials: true,
+        }
+    );
+};
+
+export const fetchReferralsGivenActivity = (userId, page = 1, limit = 10) => {
+    const formData = new FormData();
+    formData.append("userId", userId);
+    formData.append("page", page);
+    formData.append("limit", limit);
+    return axios.post(
+        `${AppConfig.api_url}users/referrals-given-activity`,
+        formData,
+        {
+            withCredentials: true,
+        }
+    );
+};
+
+export const fetchReferralsReceivedActivity = (
+    userId,
+    page = 1,
+    limit = 10
+) => {
+    const formData = new FormData();
+    formData.append("userId", userId);
+    formData.append("page", page);
+    formData.append("limit", limit);
+    return axios.post(
+        `${AppConfig.api_url}users/referrals-received-activity`,
+        formData,
+        {
+            withCredentials: true,
+        }
+    );
 };
 
 export const suspendUser = (userId) => {

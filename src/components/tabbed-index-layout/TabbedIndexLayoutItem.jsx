@@ -1,4 +1,4 @@
-const TabbedIndexLayoutItem = ({ item, isActive }) => {
+const TabbedIndexLayoutItem = ({ item, isActive, onClick }) => {
     return (
         <div
             className={`${
@@ -6,6 +6,7 @@ const TabbedIndexLayoutItem = ({ item, isActive }) => {
                     ? "bg-gradient-to-r from-[#FCBB12] to-[#FAFF00]"
                     : "bg-white"
             } rounded-[10px] px-[10px] py-[8px] font-dmSans text-[15px] cursor-pointer`}
+            onClick={onClick}
         >
             <p>{item.label}</p>
         </div>
