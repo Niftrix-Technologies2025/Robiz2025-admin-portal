@@ -1,6 +1,6 @@
 import Modal from "react-modal";
-import { useState } from "react";
 import Select from "react-select";
+import { useState } from "react";
 import { IoClose } from "react-icons/io5";
 import PremiumServices from "../modal-page-layouts/PremiumServices";
 import ReferralHistory from "../modal-page-layouts/ReferralHistory";
@@ -8,6 +8,31 @@ const dropDownValues = [
     { value: "premium", label: "Premium Services" },
     { value: "referral", label: "Referrals" },
 ];
+const customStyles = {
+    control: (provided, state) => ({
+        ...provided,
+        background: "transparent",
+        display: "flex",
+        flexDirection: "row",
+        flexWrap: "nowrap",
+        borderRadius: "8px",
+        borderColor: state.isFocused ? "black" : "transparent",
+        boxShadow: state.isFocused ? "0 0 0 1px black" : "none",
+        "&:hover": {
+            borderColor: "black",
+        },
+    }),
+    menu: (provided) => ({
+        ...provided,
+    }),
+    dropdownIndicator: (provided) => ({
+        ...provided,
+        color: "black",
+        "&:hover": {
+            color: "black",
+        },
+    }),
+};
 const UserActivityHistoryModal = ({ userId, isOpen, onRequestClose }) => {
     const [selectedAttribute, setSelectedAttribute] = useState(
         dropDownValues[0]
@@ -31,9 +56,13 @@ const UserActivityHistoryModal = ({ userId, isOpen, onRequestClose }) => {
                             value={selectedAttribute}
                             onChange={setSelectedAttribute}
                             options={dropDownValues}
-                            className={`w-[218px] max-sm:w-[110px] my-[2px] font-dmSans bg-transparent`}
+                            className={`w-[218px] max-sm:w-[110px] my-[2px] font-dmSans`}
                             classNamePrefix="react-select"
+                            styles={customStyles}
                             isSearchable={false}
+                            components={{
+                                IndicatorSeparator: () => null,
+                            }}
                         />
                     </div>
                     <IoClose

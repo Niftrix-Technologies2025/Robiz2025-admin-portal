@@ -6,7 +6,7 @@ import { fetchAllBanners } from "../../services/content.service";
 import BannerListItem from "./components/BannerListItem";
 import LoadingItem from "../../components/LoadingItem";
 
-const PAGE_SIZE = 100; //100 results per page
+const PAGE_SIZE = 50; //100 results per page
 
 const ViewBanners = () => {
     const { isLoading, setIsLoading } = useLoading();
@@ -24,7 +24,7 @@ const ViewBanners = () => {
                 setBanners(res.data.results || []);
                 setTotal(res.data.total || 0);
                 setIsLoading(false);
-                console.log(res.data.results);
+                // console.log(res.data.results);
             } catch {
                 console.log("Error fetching banners");
                 setIsLoading(false);

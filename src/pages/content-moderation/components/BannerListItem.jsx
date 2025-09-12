@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ImageDetailModal from "../../../components/modals/ImageDetailModal";
 const columnTitleStyle = "font-medium text-[12px] text-gray-600";
+// import "../../../assets/images/banner-placeholder.svg" as BannerPlaceholder;
 const BannerListItem = ({ index, banner, page, pageSize }) => {
     const serialNumber = (page - 1) * pageSize + index + 1;
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -27,9 +28,7 @@ const BannerListItem = ({ index, banner, page, pageSize }) => {
             </div>
             <div className="flex flex-col truncate">
                 <p className={`${columnTitleStyle}`}>Slot No</p>
-                <p className="w-[30px]">
-                    {banner.trendingBannerSlotNo ?? "-"}
-                </p>
+                <p className="w-[30px]">{banner.trendingBannerSlotNo ?? "-"}</p>
             </div>
             <div className="flex flex-col truncate">
                 <p className={`${columnTitleStyle}`}>Currency</p>
@@ -74,17 +73,26 @@ const BannerListItem = ({ index, banner, page, pageSize }) => {
             </div>
             <div className="flex flex-col justify-center items-center truncate">
                 <p className={`${columnTitleStyle}`}>Banner Image</p>
-                <img
-                    src={banner.bannerImageUrl}
-                    className={`${
-                        banner?.bannerType == "trending-banner"
-                            ? // ? "w-[52px] h-[80px]"
-                              // : "w-[76px] h-[40px]"
-                              "w-[20px] h-[32px]"
-                            : "w-[38px] h-[20px]"
-                    } cursor-pointer border-[1.5px] rounded-[5px] border-gray-300`}
-                    loading="lazy"
-                />
+                {banner?.bannerImageUrl != null ? (
+                    <img
+                        src={banner.bannerImageUrl}
+                        className={`${
+                            banner?.bannerType == "trending-banner"
+                                ? // ? "w-[52px] h-[80px]"
+                                  // : "w-[76px] h-[40px]"
+                                  "w-[20px] h-[32px]"
+                                : "w-[38px] h-[20px]"
+                        } cursor-pointer border-[1.5px] rounded-[5px] border-gray-300`}
+                        loading="lazy"
+                        // onError={(e) => {
+                        //     e.target.onerror = null;
+                        //     e.target.src =
+                        //         "../../assets/images/banner-placeholder.svg";
+                        // }}
+                    />
+                ) : (
+                    <div></div>
+                )}
             </div>
         </div>
     );
