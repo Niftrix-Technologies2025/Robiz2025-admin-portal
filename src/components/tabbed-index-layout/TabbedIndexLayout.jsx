@@ -1,9 +1,18 @@
-import React from 'react'
+import TabbedIndexLayoutItem from "./TabbedIndexLayoutItem";
 
-const TabbedIndexLayout = () => {
-  return (
-    <div>TabbedIndexLayout</div>
-  )
-}
+const TabbedIndexLayout = ({ items, activeIndex, onChange }) => {
+    return (
+        <div className="bg-white w-full flex flex-row gap-[35px] px-[45px] py-[12px]">
+            {items.map((item, index) => (
+                <TabbedIndexLayoutItem
+                    key={index}
+                    item={item}
+                    onClick={() => onChange(index)}
+                    isActive={index === activeIndex}
+                />
+            ))}
+        </div>
+    );
+};
 
-export default TabbedIndexLayout
+export default TabbedIndexLayout;

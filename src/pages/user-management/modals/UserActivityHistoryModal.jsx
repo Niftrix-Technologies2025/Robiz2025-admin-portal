@@ -5,8 +5,10 @@ import { useEffect, useState } from "react";
 import { fetchUserActivityHistory } from "../../../services/user.service";
 // import CustomCloseButton from "../../../components/CustomCloseButton";
 import Select from "react-select";
-import UserActivityHistorySection from "../components/UserActivityHistorySection";
+// import UserActivityHistorySection from "../components/UserActivityHistorySection";
 import { IoClose } from "react-icons/io5";
+import PremiumServices from "../modal-page-layouts/PremiumServices";
+import ReferralHistory from "../modal-page-layouts/ReferralHistory";
 const dropDownValues = [
     { value: "premium", label: "Premium Services" },
     { value: "referral", label: "Referrals" },
@@ -65,16 +67,10 @@ const UserActivityHistoryModal = ({ userId, isOpen, onRequestClose }) => {
 
                 {isLoading ? (
                     <LoadingItem size={10} />
+                ) : selectedAttribute.value === "premium" ? (
+                    <PremiumServices />
                 ) : (
-                    // <div className="flex flex-col w-full h-[90%] mt-[15px] px-[10px] gap-[10px] overflow-y-auto">
-                    //     <UserActivityHistorySection
-                    //         sectionTitle={"Referrals Sent/Received"}
-                    //     />
-                    //     <UserActivityHistorySection
-                    //         sectionTitle={"Premium Services"}
-                    //     />
-                    // </div>
-                    <div></div>
+                    <ReferralHistory />
                 )}
             </div>
         </Modal>
